@@ -1,297 +1,315 @@
-const booksData = [
-    // 1-10: Classics & Philosophy
-    { title: "White Nights", author: "Fyodor Dostoevsky", price: "110", old: "150", img: "" },
-    { title: "The Stranger", author: "Albert Camus", price: "95", old: "120", img: "https://covers.openlibrary.org/b/id/12711652-L.jpg" },
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden Library | Official Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <title>Hidden Library | Philosophical Works</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #d4af37;
-            --dark: #121212;
-            --light-bg: #ffffff;
-            --gray-bg: #f9f9f9;
-            --sale-red: #e63946;
+            --bg: #fdfcf0;
+            --main: #000000;
+            --accent: #ff4d00; /* Sharp Neo-Brutalism Orange */
+            --border: 3px solid #000;
+            --shadow: 8px 8px 0px #000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--light-bg);
-            color: var(--dark);
-            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--main);
+            overflow-x: hidden;
         }
 
         /* --- Header --- */
         header {
-            padding: 25px;
+            border-bottom: var(--border);
+            padding: 60px 5%;
             text-align: center;
-            border-bottom: 1px solid #eee;
             background: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
 
-        .logo {
-            text-decoration: none;
-            display: inline-block;
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 0.9;
         }
 
-        .logo-top { color: #000; font-size: 26px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; display: block; }
-        .logo-bottom { color: var(--gold); font-size: 16px; letter-spacing: 8px; text-transform: uppercase; border-top: 1px solid var(--gold); margin-top: 5px; padding-top: 5px; }
-
-        /* --- Hero Section --- */
-        .hero {
-            background: var(--dark);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+        header p {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            text-transform: uppercase;
+            color: var(--accent);
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 40px; margin-bottom: 10px; }
-        .hero p { opacity: 0.8; font-weight: 300; }
 
         /* --- Grid System --- */
-        .main-container { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 35px; }
+        .container {
+            width: 90%;
+            margin: 60px auto;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+        }
 
         /* --- Book Card --- */
-        .book-card { background: #fff; transition: 0.3s ease; position: relative; cursor: pointer; }
-        .book-card:hover { transform: translateY(-10px); }
+        .book-card {
+            background: white;
+            border: var(--border);
+            box-shadow: var(--shadow);
+            padding: 15px;
+            transition: 0.2s ease-in-out;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
 
-        .img-box {
-            position: relative;
+        .book-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px var(--accent);
+        }
+
+        .book-card img {
             width: 100%;
-            aspect-ratio: 2/3;
-            background: #f0f0f0;
-            border-radius: 3px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 400px;
+            object-fit: cover;
+            border-bottom: var(--border);
+            margin-bottom: 15px;
+            filter: grayscale(20%);
         }
 
-        .book-img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* الغلاف الذكي (عند غياب الصورة) */
-        .smart-cover {
-            width: 100%; height: 100%; background: var(--dark);
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; padding: 20px; text-align: center;
-            border: 2px solid var(--gold); box-sizing: border-box;
+        .book-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
         }
-        .smart-title { color: #fff; font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; }
-        .smart-author { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 12px; font-style: italic; }
 
-        .badge { position: absolute; top: 10px; left: 10px; background: var(--sale-red); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 2px; z-index: 5; }
+        .author-tag {
+            background: var(--main);
+            color: white;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
 
-        .info { padding: 15px 0; }
-        .author-name { font-size: 11px; color: #888; text-transform: uppercase; margin: 0 0 5px 0; }
-        .title-text { font-size: 14px; font-weight: 600; margin: 0 0 10px 0; height: 40px; overflow: hidden; }
-        .price { font-weight: 700; font-size: 14px; }
-        .old-p { text-decoration: line-through; color: #ccc; font-weight: 400; margin-right: 10px; }
+        .btn-buy {
+            margin-top: auto;
+            background: var(--accent);
+            color: #fff;
+            border: var(--border);
+            padding: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-buy:hover {
+            background: #000;
+        }
+
+        /* --- Modal (Details) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--bg);
+            border: 5px solid #000;
+            box-shadow: 20px 20px 0px var(--accent);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 20px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            font-weight: 800;
+        }
 
         /* --- Reviews --- */
-        .reviews { background: var(--gray-bg); padding: 80px 20px; margin-top: 50px; text-align: center; }
-        .rev-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1100px; margin: 40px auto; }
-        .rev-card { background: #fff; padding: 30px; width: 300px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
-        .stars { color: var(--gold); margin-bottom: 10px; }
+        .reviews {
+            margin-top: 100px;
+            border-top: var(--border);
+            padding: 60px 5%;
+            background: #000;
+            color: #fff;
+        }
+
+        .review-card {
+            border: 2px solid #fff;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .review-card:hover {
+            background: var(--accent);
+        }
 
         /* --- Footer --- */
-        footer { background: #000; color: #fff; padding: 60px 20px; text-align: center; }
-        .foot-main { font-size: 14px; letter-spacing: 1px; color: #777; }
-        .foot-main b { color: var(--gold); }
-        .uni { margin-top: 20px; font-size: 11px; color: #444; text-transform: uppercase; }
+        footer {
+            padding: 80px 5%;
+            background: #fff;
+            border-top: var(--border);
+            text-align: center;
+        }
 
-        @media (max-width: 600px) {
-            .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .hero h1 { font-size: 28px; }
+        .credits {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 20px 0;
+            letter-spacing: 2px;
+        }
+
+        .names {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 3rem; }
+            .modal-content { flex-direction: column; overflow-y: auto; height: 90vh; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <a href="#" class="logo">
-        <span class="logo-top">Hidden</span>
-        <span class="logo-bottom">Library</span>
-    </a>
-</header>
+    <header>
+        <h1>HIDDEN LIBRARY</h1>
+        <p>A Curated Collection of Existentialist & Philosophical Works</p>
+    </header>
 
-<section class="hero">
-    <h1>Discover the Masterpieces</h1>
-    <p>Premium Collection of Philosophy, Literature & Classics</p>
-</section>
-
-<div class="main-container">
-    <div class="grid" id="book-container"></div>
-</div>
-
-<section class="reviews">
-    <h2>What Our Readers Say</h2>
-    <div class="rev-grid">
-        <div class="rev-card">
-            <div class="stars">★★★★★</div>
-            <p>"The best bookstore in Morocco for English students. Fast shipping!"</p>
-            <b>Yassine Benali</b>
-        </div>
-        <div class="rev-card">
-            <div class="stars">★★★★★</div>
-            <p>"Found rare philosophy books that were impossible to find elsewhere."</p>
-            <b>Nora Mansouri</b>
-        </div>
-        <div class="rev-card">
-            <div class="stars">★★★★★</div>
-            <p>"High quality books and excellent service. 10/10!"</p>
-            <b>James Wilson</b>
+    <div class="container">
+        <div class="book-grid" id="bookGrid">
+            <!-- 100 Books injected here -->
         </div>
     </div>
-</section>
 
-<footer>
-    <div class="foot-main">
-        &copy; 2026 HIDDEN LIBRARY PROJECT <br>
-        Developed by: <b>CHARAFEDDINE EL AOUYNI</b> & <b>AMINE DRGHOUI</b>
+    <!-- Details Modal -->
+    <div class="modal" id="bookModal">
+        <div class="modal-content" id="modalBody">
+            <!-- Content Injected -->
+        </div>
     </div>
-    <div class="uni">
-        English Studies Department | FLSHM Mohammedia - Morocco
-    </div>
-</footer>
 
-<script>
-    const books = [
-        { t: "White Nights", a: "Fyodor Dostoevsky", p: "110", o: "150", i: "" },
-        { t: "The Great Gatsby", a: "F. Scott Fitzgerald", p: "95", o: "130", i: "https://covers.openlibrary.org/b/id/8432047-L.jpg" },
-        { t: "1984", a: "George Orwell", p: "105", o: "140", i: "https://covers.openlibrary.org/b/id/12838965-L.jpg" },
-        { t: "Beyond Good and Evil", a: "Friedrich Nietzsche", p: "120", o: "160", i: "" },
-        { t: "The Stranger", a: "Albert Camus", p: "90", o: "125", i: "https://covers.openlibrary.org/b/id/12711652-L.jpg" },
-        { t: "Atomic Habits", a: "James Clear", p: "140", o: "180", i: "" },
-        { t: "Meditations", a: "Marcus Aurelius", p: "115", o: "150", i: "" },
-        { t: "Crime and Punishment", a: "Fyodor Dostoevsky", p: "135", o: "175", i: "" },
-        { t: "Hamlet", a: "William Shakespeare", p: "85", o: "115", i: "" },
-        { t: "Sapiens", a: "Yuval Noah Harari", p: "150", o: "195", i: "" },
-        { t: "The Silent Patient", a: "Alex Michaelides", p: "120", o: "160", i: "" },
-        { t: "Thinking, Fast and Slow", a: "Daniel Kahneman", p: "145", o: "190", i: "" },
-        { t: "The 48 Laws of Power", a: "Robert Greene", p: "185", o: "240", i: "" },
-        { t: "Deep Work", a: "Cal Newport", p: "130", o: "170", i: "" },
-        { t: "Man's Search for Meaning", a: "Viktor Frankl", p: "110", o: "145", i: "" },
-        { t: "Animal Farm", a: "George Orwell", p: "80", o: "110", i: "" },
-        { t: "The Alchemist", a: "Paulo Coelho", p: "95", o: "130", i: "" },
-        { t: "The Picture of Dorian Gray", a: "Oscar Wilde", p: "105", o: "140", i: "" },
-        { t: "Wuthering Heights", a: "Emily Brontë", p: "115", o: "150", i: "" },
-        { t: "Jane Eyre", a: "Charlotte Brontë", p: "115", o: "150", i: "" },
-        { t: "Pride and Prejudice", a: "Jane Austen", p: "110", o: "145", i: "" },
-        { t: "Ulysses", a: "James Joyce", p: "165", o: "220", i: "" },
-        { t: "The Trial", a: "Franz Kafka", p: "95", o: "130", i: "" },
-        { t: "Notes from Underground", a: "Fyodor Dostoevsky", p: "90", o: "125", i: "" },
-        { t: "Waiting for Godot", a: "Samuel Beckett", p: "105", o: "140", i: "" },
-        { t: "To Kill a Mockingbird", a: "Harper Lee", p: "120", o: "160", i: "" },
-        { t: "The Metamorphosis", a: "Franz Kafka", p: "85", o: "115", i: "" },
-        { t: "Thus Spoke Zarathustra", a: "Friedrich Nietzsche", p: "145", o: "195", i: "" },
-        { t: "The Republic", a: "Plato", p: "115", o: "155", i: "" },
-        { t: "A Brief History of Time", a: "Stephen Hawking", p: "140", o: "185", i: "" },
-        { t: "Dune", a: "Frank Herbert", p: "150", o: "205", i: "" },
-        { t: "Brave New World", a: "Aldous Huxley", p: "110", o: "150", i: "" },
-        { t: "Fahrenheit 451", a: "Ray Bradbury", p: "105", o: "140", i: "" },
-        { t: "The Book Thief", a: "Markus Zusak", p: "130", o: "175", i: "" },
-        { t: "The Kite Runner", a: "Khaled Hosseini", p: "115", o: "160", i: "" },
-        { t: "Life of Pi", a: "Yann Martel", p: "105", o: "145", i: "" },
-        { t: "The Shining", a: "Stephen King", p: "135", o: "180", i: "" },
-        { t: "Dracula", a: "Bram Stoker", p: "115", o: "155", i: "" },
-        { t: "Frankenstein", a: "Mary Shelley", p: "110", o: "150", i: "" },
-        { t: "The Road", a: "Cormac McCarthy", p: "125", o: "170", i: "" },
-        { t: "Siddhartha", a: "Hermann Hesse", p: "95", o: "130", i: "" },
-        { t: "Norwegian Wood", a: "Haruki Murakami", p: "130", o: "175", i: "" },
-        { t: "Kafka on the Shore", a: "Haruki Murakami", p: "145", o: "195", i: "" },
-        { t: "The Song of Achilles", a: "Madeline Miller", p: "125", o: "170", i: "" },
-        { t: "Circe", a: "Madeline Miller", p: "125", o: "170", i: "" },
-        { t: "Normal People", a: "Sally Rooney", p: "120", o: "165", i: "" },
-        { t: "Educated", a: "Tara Westover", p: "135", o: "185", i: "" },
-        { t: "Becoming", a: "Michelle Obama", p: "160", o: "210", i: "" },
-        { t: "The 5 AM Club", a: "Robin Sharma", p: "125", o: "170", i: "" },
-        { t: "Rich Dad Poor Dad", a: "Robert Kiyosaki", p: "130", o: "175", i: "" },
-        { t: "The Art of War", a: "Sun Tzu", p: "85", o: "120", i: "" },
-        { t: "The Prince", a: "Niccolo Machiavelli", p: "90", o: "125", i: "" },
-        { t: "Guns, Germs, and Steel", a: "Jared Diamond", p: "155", o: "210", i: "" },
-        { t: "The Silk Roads", a: "Peter Frankopan", p: "170", o: "230", i: "" },
-        { t: "The Handmaid's Tale", a: "Margaret Atwood", p: "120", o: "165", i: "" },
-        { t: "Beloved", a: "Toni Morrison", p: "125", o: "170", i: "" },
-        { t: "The Catch-22", a: "Joseph Heller", p: "115", o: "160", i: "" },
-        { t: "The Old Man and the Sea", a: "Ernest Hemingway", p: "90", o: "125", i: "" },
-        { t: "On the Road", a: "Jack Kerouac", p: "120", o: "165", i: "" },
-        { t: "Lolita", a: "Vladimir Nabokov", p: "135", o: "185", i: "" },
-        { t: "The Brothers Karamazov", a: "Fyodor Dostoevsky", p: "170", o: "230", i: "" },
-        { t: "Anna Karenina", a: "Leo Tolstoy", p: "175", o: "240", i: "" },
-        { t: "War and Peace", a: "Leo Tolstoy", p: "220", o: "300", i: "" },
-        { t: "Madame Bovary", a: "Gustave Flaubert", p: "110", o: "150", i: "" },
-        { t: "Les Misérables", a: "Victor Hugo", p: "190", o: "260", i: "" },
-        { t: "The Hobbit", a: "J.R.R. Tolkien", p: "130", o: "180", i: "" },
-        { t: "The Fellowship of the Ring", a: "J.R.R. Tolkien", p: "150", o: "210", i: "" },
-        { t: "Harry Potter Collection", a: "J.K. Rowling", p: "450", o: "600", i: "" },
-        { t: "A Game of Thrones", a: "George R.R. Martin", p: "145", o: "200", i: "" },
-        { t: "The Name of the Wind", a: "Patrick Rothfuss", p: "140", o: "190", i: "" },
-        { t: "Mistborn", a: "Brandon Sanderson", p: "135", o: "185", i: "" },
-        { t: "The Way of Kings", a: "Brandon Sanderson", p: "180", o: "250", i: "" },
-        { t: "Neuromancer", a: "William Gibson", p: "120", o: "165", i: "" },
-        { t: "The Left Hand of Darkness", a: "Ursula K. Le Guin", p: "125", o: "170", i: "" },
-        { t: "Foundation", a: "Isaac Asimov", p: "115", o: "160", i: "" },
-        { t: "The Martian", a: "Andy Weir", p: "120", o: "165", i: "" },
-        { t: "Project Hail Mary", a: "Andy Weir", p: "140", o: "190", i: "" },
-        { t: "Exhalation", a: "Ted Chiang", p: "130", o: "175", i: "" },
-        { t: "The Power", a: "Naomi Alderman", p: "115", o: "160", i: "" },
-        { t: "Station Eleven", a: "Emily St. John Mandel", p: "120", o: "165", i: "" },
-        { t: "Small Gods", a: "Terry Pratchett", p: "110", o: "150", i: "" },
-        { t: "Good Omens", a: "Neil Gaiman & Terry Pratchett", p: "125", o: "170", i: "" },
-        { t: "The Ocean at the End of the Lane", a: "Neil Gaiman", p: "110", o: "150", i: "" },
-        { t: "The God of Small Things", a: "Arundhati Roy", p: "120", o: "165", i: "" },
-        { t: "Midnight's Children", a: "Salman Rushdie", p: "135", o: "185", i: "" },
-        { t: "White Teeth", a: "Zadie Smith", p: "125", o: "170", i: "" },
-        { t: "A Little Life", a: "Hanya Yanagihara", p: "155", o: "210", i: "" },
-        { t: "The Goldfinch", a: "Donna Tartt", p: "145", o: "195", i: "" },
-        { t: "The Secret History", a: "Donna Tartt", p: "140", o: "190", i: "" },
-        { t: "Everything I Never Told You", a: "Celeste Ng", p: "115", o: "160", i: "" },
-        { t: "The Vanishing Half", a: "Brit Bennett", p: "125", o: "170", i: "" },
-        { t: "Crying in H Mart", a: "Michelle Zauner", p: "130", o: "175", i: "" },
-        { t: "Tomorrow, and Tomorrow, and Tomorrow", a: "Gabrielle Zevin", p: "140", o: "190", i: "" },
-        { t: "The Seven Husbands of Evelyn Hugo", a: "Taylor Jenkins Reid", p: "125", o: "170", i: "" },
-        { t: "Verity", a: "Colleen Hoover", p: "115", o: "160", i: "" },
-        { t: "It Ends with Us", a: "Colleen Hoover", p: "120", o: "165", i: "" },
-        { t: "Where the Crawdads Sing", a: "Delia Owens", p: "120", o: "165", i: "" },
-        { t: "The Midnight Library", a: "Matt Haig", p: "115", o: "160", i: "" },
-        { t: "Beyond the Cogito", a: "Library Special", p: "199", o: "250", i: "" },
-        { t: "The Final Piece", a: "Hidden Library", p: "299", o: "400", i: "" }
-    ];
+    <section class="reviews">
+        <h2 style="font-size: 3rem; margin-bottom: 40px; font-family: 'Playfair Display';">Critical Reviews</h2>
+        <div id="reviewGrid"></div>
+    </section>
 
-    function createCard(book) {
-        const cover = book.i 
-            ? `<img src="${book.i}" class="book-img" alt="${book.t}" onerror="this.parentElement.innerHTML=genSmart('${book.t}','${book.a}')">`
-            : genSmart(book.t, book.a);
+    <footer>
+        <p>Academic Project Developed By</p>
+        <div class="credits">
+            <span class="names">CHARAFEDDINE EL AOUYNI</span> & <span class="names">AMINE DRGHOUI</span>
+        </div>
+        <p>© 2024 Hidden Library - For Educational Purposes Only</p>
+    </footer>
 
-        return `
-            <div class="book-card">
-                <div class="badge">Sale</div>
-                <div class="img-box">${cover}</div>
-                <div class="info">
-                    <p class="author-name">${book.a}</p>
-                    <h3 class="title-text">${book.t}</h3>
-                    <div class="price">
-                        <span class="old-p">${book.o}.00 dh</span>
-                        <span>${book.p}.00 dh</span>
-                    </div>
+    <script>
+        const authors = ["Friedrich Nietzsche", "Fyodor Dostoevsky", "Franz Kafka", "Albert Camus", "Jean-Paul Sartre", "Arthur Schopenhauer", "Søren Kierkegaard"];
+        const titles = [
+            "The Stranger", "Crime and Punishment", "The Trial", "Thus Spoke Zarathustra", "Nausea", 
+            "The Myth of Sisyphus", "The Brothers Karamazov", "Beyond Good and Evil", "The Metamorphosis", 
+            "No Exit", "The Plague", "The Castle", "The Idiot", "Fear and Trembling", "The Fall"
+        ];
+
+        const descriptions = [
+            "A deep dive into the absurdity of existence and the indifference of the universe.",
+            "An intense psychological exploration of guilt, morality, and the search for redemption.",
+            "A masterpiece of existential dread, highlighting the struggle against incomprehensible powers.",
+            "Challenging traditional morality and introducing the concept of the Übermensch."
+        ];
+
+        // Generate 100 Books
+        const bookGrid = document.getElementById('bookGrid');
+        for (let i = 1; i <= 100; i++) {
+            const author = authors[Math.floor(Math.random() * authors.length)];
+            const title = titles[Math.floor(Math.random() * titles.length)];
+            const imgId = 100 + i; // Different image for each book
+
+            const card = document.createElement('div');
+            card.className = 'book-card';
+            card.innerHTML = `
+                <img src="https://picsum.photos/seed/${imgId}/400/600" alt="Book Cover">
+                <div class="author-tag">${author}</div>
+                <h3>${title}</h3>
+                <p style="margin-bottom:15px; font-size:0.9rem; opacity:0.7">Limited Edition | Hardcover</p>
+                <button class="btn-buy" onclick="openModal('${title}', '${author}', ${imgId})">View Details</button>
+            `;
+            bookGrid.appendChild(card);
+        }
+
+        function openModal(title, author, imgId) {
+            const modal = document.getElementById('bookModal');
+            const body = document.getElementById('modalBody');
+            const desc = descriptions[Math.floor(Math.random() * descriptions.length)];
+
+            body.innerHTML = `
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <img src="https://picsum.photos/seed/${imgId}/400/600" style="width:350px; border:var(--border)">
+                <div>
+                    <span class="author-tag" style="background:var(--accent)">Rare Philosophical Find</span>
+                    <h2 style="font-size:3rem; font-family:'Playfair Display'">${title}</h2>
+                    <h4 style="margin-bottom:20px">Author: ${author}</h4>
+                    <p style="font-size:1.1rem; line-height:1.8; margin-bottom:20px">${desc} This edition features exclusive commentary and historical context of the philosophical movement.</p>
+                    <p style="font-size:1.5rem; font-weight:800">$29.99</p>
+                    <button class="btn-buy" style="width:100%; margin-top:20px; font-size:1.2rem">Add to Collection</button>
                 </div>
-            </div>
-        `;
-    }
+            `;
+            modal.style.display = 'flex';
+        }
 
-    function genSmart(t, a) {
-        return `<div class="smart-cover"><div class="smart-title">${t}</div><div class="smart-author">${a}</div></div>`;
-    }
+        function closeModal() {
+            document.getElementById('bookModal').style.display = 'none';
+        }
 
-    const container = document.getElementById('book-container');
-    books.forEach(b => container.innerHTML += createCard(b));
-</script>
+        // Logical English Reviews
+        const reviewsData = [
+            {name: "Prof. Julian Harrison", text: "The Hidden Library curates the most profound translations of Dostoevsky I've ever encountered. Essential for any philosophy student."},
+            {name: "Eleanor Vance", text: "The Neo-Brutalism design of the site reflects the harsh truths of Kafka's literature perfectly. A masterpiece of web design."},
+            {name: "Marcus Thorne", text: "As a collector, I find their 'Rare Find' section invaluable. The quality of the prints matches the weight of the ideas within."},
+            {name: "Dr. Sarah Jenkins", text: "Finally, a bookstore that treats philosophy with the grit and boldness it deserves. Excellent navigation and selection."}
+        ];
 
+        const revGrid = document.getElementById('reviewGrid');
+        reviewsData.forEach(r => {
+            revGrid.innerHTML += `
+                <div class="review-card">
+                    <h4 style="color:var(--accent)">${r.name}</h4>
+                    <p style="font-style:italic; margin-top:10px">"${r.text}"</p>
+                </div>
+            `;
+        });
+
+        // Close modal on outside click
+        window.onclick = (e) => { if(e.target == document.getElementById('bookModal')) closeModal(); }
+    </script>
 </body>
 </html>
