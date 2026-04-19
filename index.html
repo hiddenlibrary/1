@@ -3,233 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beyond the Cogito | Digital Archive</title>
+    <title>Beyond the Cogito | 100 Unique Masterpieces</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --gold: #b5945b;
-            --dark: #121212;
-            --ivory: #fdfcf9;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            background-color: var(--ivory);
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        /* Navigation Area */
-        nav {
-            background: var(--dark);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--gold);
-        }
-
+        :root { --gold: #b5945b; --dark: #121212; --ivory: #fdfcf9; }
+        body { font-family: 'Georgia', serif; background-color: var(--ivory); margin: 0; padding: 0; color: #333; }
+        nav { background: var(--dark); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--gold); }
         .logo { color: white; font-size: 1.4rem; letter-spacing: 2px; text-decoration: none; text-transform: uppercase; font-weight: bold; }
         .logo span { color: var(--gold); }
-
-        .search-box {
-            background: #222;
-            border: 1px solid #444;
-            padding: 10px 20px;
-            border-radius: 30px;
-            color: white;
-            width: 280px;
-            outline: none;
-            transition: 0.3s;
-        }
-        .search-box:focus { border-color: var(--gold); width: 320px; }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            height: 350px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            border-bottom: 4px solid var(--gold);
-        }
-
-        .hero h1 { font-size: 3rem; margin: 0; letter-spacing: 3px; }
-        .hero p { font-style: italic; color: var(--gold); font-size: 1.2rem; margin-top: 10px; }
-
-        /* Grid Layout */
+        .search-box { background: #222; border: 1px solid #444; padding: 10px 20px; border-radius: 30px; color: white; width: 250px; outline: none; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80'); background-size: cover; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
         .main-container { padding: 50px 5%; max-width: 1400px; margin: auto; }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 40px;
-        }
-
-        /* Dynamic Book Cover Styling */
-        .book-card {
-            background: white;
-            border: 1px solid #eee;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .book-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); border-color: var(--gold); }
-
-        .cover-area {
-            height: 320px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 20px;
-            text-align: center;
-            color: white;
-            position: relative;
-            box-sizing: border-box;
-            border-bottom: 6px solid rgba(0,0,0,0.3);
-        }
-
-        .cover-area::before {
-            content: '';
-            position: absolute;
-            left: 5px; top: 0; bottom: 0; width: 15px;
-            background: rgba(255,255,255,0.1); /* Spine effect */
-        }
-
-        .cover-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin-top: 20px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-
-        .cover-author {
-            font-size: 0.8rem;
-            font-style: italic;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-
-        .book-icon { font-size: 2.5rem; opacity: 0.4; }
-
-        /* Book Info Below Cover */
-        .book-details { padding: 20px; text-align: left; }
-        .book-details h3 { font-size: 1rem; margin: 0 0 10px; color: var(--dark); height: 2.4em; overflow: hidden; }
-        
-        .price-tag {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-            font-weight: bold;
-            color: var(--gold);
-            font-family: Arial, sans-serif;
-        }
-
-        .btn-buy {
-            background: var(--dark);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-buy:hover { background: var(--gold); color: black; }
-
-        footer { background: var(--dark); color: #777; padding: 60px 20px; text-align: center; margin-top: 50px; }
-        .footer-info { color: #bbb; margin-bottom: 15px; font-size: 0.9rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; }
+        .book-card { background: white; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; overflow: hidden; }
+        .book-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .cover-area { height: 300px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 25px 15px; text-align: center; color: white; position: relative; box-sizing: border-box; border-bottom: 5px solid rgba(0,0,0,0.2); }
+        .cover-title { font-size: 0.9rem; font-weight: bold; text-transform: uppercase; margin-top: 15px; line-height: 1.2; }
+        .cover-author { font-size: 0.75rem; font-style: italic; margin-bottom: 15px; opacity: 0.9; }
+        .book-details { padding: 15px; }
+        .book-details h3 { font-size: 0.9rem; margin: 0 0 5px; color: #111; height: 2.4em; overflow: hidden; }
+        .price-tag { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-weight: bold; color: var(--gold); }
+        .btn-buy { background: var(--dark); color: white; border: none; padding: 7px 10px; font-size: 0.75rem; cursor: pointer; }
+        footer { background: var(--dark); color: #777; padding: 50px 20px; text-align: center; border-top: 5px solid var(--gold); }
+        .names { color: var(--gold); font-weight: bold; font-size: 1.1rem; margin-top: 10px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="#" class="logo">BEYOND THE <span>COGITO</span></a>
-        <input type="text" class="search-box" id="searchBar" placeholder="Search for a book or author..." onkeyup="filterBooks()">
+        <input type="text" class="search-box" id="searchBar" placeholder="Search 100 unique books..." onkeyup="filterBooks()">
     </nav>
-
     <div class="hero">
         <h1>The Eternal Library</h1>
-        <p>"I think, therefore I am." — René Descartes</p>
+        <p>100 Masterpieces of Human Thought</p>
     </div>
-
     <div class="main-container">
         <div class="grid" id="libraryGrid"></div>
     </div>
-
     <footer>
-        <div class="footer-info">Designed by Osama, Amine & Charafeddine</div>
-        <p>&copy; 2026 Academic Project | FLSHM Mohammedia - Department of English Studies</p>
+        <p>PROJECT DEVELOPED BY:</p>
+        <div class="names">AMINE DRGHOUI & CHARAFEDDINE EL AOUYNI</div>
+        <p style="margin-top: 20px;">&copy; 2026 Academic Project | FLSHM Mohammedia</p>
     </footer>
 
     <script>
-        const libraryData = [
-            {t: "The Republic", a: "Plato", color: "#2c3e50"},
-            {t: "Meditations", a: "Marcus Aurelius", color: "#6d4c41"},
-            {t: "Thus Spoke Zarathustra", a: "Friedrich Nietzsche", color: "#b71c1c"},
-            {t: "Critique of Pure Reason", a: "Immanuel Kant", color: "#1b5e20"},
-            {t: "The Stranger", a: "Albert Camus", color: "#0d47a1"},
-            {t: "Being and Nothingness", a: "Jean-Paul Sartre", color: "#e65100"},
-            {t: "The Prince", a: "Niccolò Machiavelli", color: "#37474f"},
-            {t: "Ethics", a: "Baruch Spinoza", color: "#006064"},
-            {t: "The Art of War", a: "Sun Tzu", color: "#212121"},
-            {t: "Sophie's World", a: "Jostein Gaarder", color: "#4a148c"},
-            {t: "The Social Contract", a: "Jean-Jacques Rousseau", color: "#bf360c"},
-            {t: "Beyond Good and Evil", a: "Friedrich Nietzsche", color: "#880e4f"},
-            {t: "Leviathan", a: "Thomas Hobbes", color: "#311b92"},
-            {t: "Man's Search for Meaning", a: "Viktor Frankl", color: "#33691e"},
-            {t: "The Second Sex", a: "Simone de Beauvoir", color: "#1a237e"}
-        ];
-
-        const container = document.getElementById('libraryGrid');
-
-        function generateLibrary() {
-            container.innerHTML = "";
-            for (let i = 0; i < 100; i++) {
-                const book = libraryData[i % libraryData.length];
-                container.innerHTML += `
-                    <div class="book-card" data-search="${book.t.toLowerCase()} ${book.a.toLowerCase()}">
-                        <div class="cover-area" style="background-color: ${book.color}">
-                            <div class="cover-title">${book.t}</div>
-                            <div class="book-icon"><i class="fas fa-feather-alt"></i></div>
-                            <div class="cover-author">${book.a}</div>
-                        </div>
-                        <div class="book-details">
-                            <h3>${book.t}</h3>
-                            <div class="price-tag">
-                                <span>${120 + i} DH</span>
-                                <button class="btn-buy">ADD TO CART</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        function filterBooks() {
-            let input = document.getElementById('searchBar').value.toLowerCase();
-            let items = document.getElementsByClassName('book-card');
-            for (let item of items) {
-                item.style.display = item.dataset.search.includes(input) ? "flex" : "none";
-            }
-        }
-
-        generateLibrary();
-    </script>
-</body>
-</html>
+        const library = [
+            {t: "The Republic", a: "Plato"}, {t: "Meditations", a: "Marcus Aurelius"}, {t: "Thus Spoke Zarathustra", a: "Nietzsche"},
+            {t: "Critique of Pure Reason", a: "Kant"}, {t: "The Stranger", a: "Albert Camus"}, {t: "Being and Nothingness", a: "Sartre"},
+            {t: "The Prince", a: "Machiavelli"}, {t: "Ethics", a: "Spinoza"}, {t: "The Art of War", a: "Sun Tzu"},
+            {t: "Sophie's World", a: "Gaarder"}, {t: "The Social Contract", a: "Rousseau"}, {t: "Leviathan", a: "Hobbes"},
+            {t: "Beyond Good and Evil", a: "Nietzsche"}, {t: "Utopia", a: "Thomas More"}, {t: "The Poetics", a: "Aristotle"},
+            {t: "Discourse on Method", a: "Descartes"}, {t: "Candide", a: "Voltaire"}, {t: "The Trial", a: "Franz Kafka"},
+            {t: "Crime and Punishment", a: "Fyodor Dostoevsky"}, {t: "The Brothers Karamazov", a: "Fyodor Dostoevsky"}, 
+            {t: "The Idiot", a: "Fyodor Dostoevsky"}, {t: "Notes from Underground", a: "Fyodor Dostoevsky"},
+            {t: "Demons", a: "Fyodor Dostoevsky"}, {t: "The Gambler", a: "Fyodor Dostoevsky"},
+            {t: "The Plague", a: "Albert Camus"}, {t: "The Fall", a: "Albert Camus"}, {t: "The Myth of Sisyphus", a: "Albert Camus"},
+            {t: "A Happy Death", a: "Albert Camus"}, {t: "Exile and the Kingdom", a: "Albert Camus"},
+            {t: "The Metamorphosis", a: "Franz Kafka"}, {t: "The Castle", a: "Franz Kafka"}, {t: "Amerika", a: "Franz Kafka"},
+            {t: "In the Penal Colony", a: "Franz Kafka"}, {t: "The Great Wall of China", a: "Franz Kafka"},
+            {t: "Gulliver's Travels", a: "Swift"}, {t: "The Iliad", a: "Homer"}, {t: "The Odyssey", a: "Homer"},
+            {t: "Divine Comedy", a: "Dante"}, {t: "Hamlet", a: "Shakespeare"}, {t: "The Wealth of Nations", a: "Adam Smith"},
+            {t: "Capital", a: "Karl Marx"}, {t: "The Interpretation of Dreams", a: "Freud"}, {t: "On Liberty", a: "John Stuart Mill"},
+            {t: "War and Peace", a: "Tolstoy"}, {t: "Moby Dick", a: "Melville"},
+            {t: "The Great Gatsby", a: "Fitzgerald"}, {t: "Ulysses", a: "James Joyce"}, {t: "Waiting for Godot", a: "Beckett"},
+            {t: "The Open Society", a: "Karl Popper"}, {t: "The Rebel", a: "Albert Camus"}, {t: "Phaedo", a: "Plato"},
+            {t: "The Symposium", a: "Plato"}, {t: "Nicomachean Ethics", a: "Aristotle"}, {t: "Organon", a: "Aristotle"},
+            {t: "Confessions", a: "Saint Augustine"}, {t: "Summa Theologica", a: "Aquinas"}, {t: "Novum Organum", a: "Francis Bacon"},
+            {t: "Human, All Too Human", a: "Nietzsche"}, {t: "The Gay Science", a: "Nietzsche"}, {t: "Ecce Homo", a: "Nietzsche"},
+            {t: "Walden", a: "Thoreau"}, {t: "Self-Reliance", a: "Emerson"}, {t: "Common Sense", a: "Thomas Paine"},
+            {t: "The Age of Reason", a: "Thomas Paine"}, {t: "The Rights of Man", a: "Thomas Paine"}, {t: "Anarchy, State, and Utopia", a: "Nozick"},
+            {t: "A Theory of Justice", a: "John Rawls"}, {t: "The Road to Serfdom", a: "Hayek"},
+            {t: "The Wretched of the Earth", a: "Frantz Fanon"}, {t: "Black Skin, White Masks", a: "Frantz Fanon"}, {t: "Simulacra and Simulation", a: "Baudrillard"},
+            {t: "The History of Madness", a: "Foucault"}, {t: "Discipline and Punish", a: "Foucault"}, {t: "The Birth of the Clinic", a: "Foucault"},
+            {t: "Mythologies", a: "Roland Barthes"}, {t: "Of Grammatology", a: "Derrida"}, {t: "Writing and Difference", a: "Derrida"},
+            {t: "The Postmodern Condition", a: "Lyotard"}, {t: "Anti-Oedipus", a: "Deleuze & Guattari"}, {t: "A Thousand Plateaus", a: "Deleuze"},
+            {t: "Minima Moralia", a: "Adorno"}, {t: "The Culture Industry", a: "Adorno"}, {t: "Eros and Civilization", a: "Marcuse"},
+            {t: "One-Dimensional Man", a: "Marcuse"}, {t: "The Ego and the Id", a: "Freud"}, {t: "Civilization and Its Discontents", a: "Freud"},
+            {t: "Totem and Taboo", a: "Freud"}, {t: "Archetypes of the Collective", a: "Carl Jung"}, {t: "The Hero with a Thousand Faces", a: "Campbell"},
+            {t: "The Golden Bough", a: "Frazer"},
+            
