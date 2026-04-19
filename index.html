@@ -2,120 +2,296 @@ const booksData = [
     // 1-10: Classics & Philosophy
     { title: "White Nights", author: "Fyodor Dostoevsky", price: "110", old: "150", img: "" },
     { title: "The Stranger", author: "Albert Camus", price: "95", old: "120", img: "https://covers.openlibrary.org/b/id/12711652-L.jpg" },
-    { title: "Beyond Good and Evil", author: "Friedrich Nietzsche", price: "130", old: "170", img: "" },
-    { title: "The Great Gatsby", author: "F. Scott Fitzgerald", price: "105", old: "140", img: "https://covers.openlibrary.org/b/id/8432047-L.jpg" },
-    { title: "1984", author: "George Orwell", price: "110", old: "145", img: "https://covers.openlibrary.org/b/id/12838965-L.jpg" },
-    { title: "Crime and Punishment", author: "Fyodor Dostoevsky", price: "145", old: "190", img: "" },
-    { title: "The Metamorphosis", author: "Franz Kafka", price: "85", old: "110", img: "https://covers.openlibrary.org/b/id/12643564-L.jpg" },
-    { title: "Hamlet", author: "William Shakespeare", price: "90", old: "120", img: "" },
-    { title: "The Alchemist", author: "Paulo Coelho", price: "95", old: "130", img: "" },
-    { title: "Meditations", author: "Marcus Aurelius", price: "120", old: "160", img: "" },
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Library | Official Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark: #121212;
+            --light-bg: #ffffff;
+            --gray-bg: #f9f9f9;
+            --sale-red: #e63946;
+        }
 
-    // 11-20: Literature & Modern Reads
-    { title: "To Kill a Mockingbird", author: "Harper Lee", price: "115", old: "150", img: "" },
-    { title: "Animal Farm", author: "George Orwell", price: "80", old: "110", img: "" },
-    { title: "The Picture of Dorian Gray", author: "Oscar Wilde", price: "100", old: "135", img: "" },
-    { title: "Wuthering Heights", author: "Emily Brontë", price: "110", old: "145", img: "" },
-    { title: "Jane Eyre", author: "Charlotte Brontë", price: "110", old: "145", img: "" },
-    { title: "Pride and Prejudice", author: "Jane Austen", price: "115", old: "155", img: "" },
-    { title: "Ulysses", author: "James Joyce", price: "160", old: "210", img: "" },
-    { title: "The Trial", author: "Franz Kafka", price: "95", old: "130", img: "" },
-    { title: "Notes from Underground", author: "Fyodor Dostoevsky", price: "90", old: "125", img: "" },
-    { title: "Waiting for Godot", author: "Samuel Beckett", price: "105", old: "140", img: "" },
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.6;
+        }
 
-    // 21-30: Psychology & Self-Help
-    { title: "Man's Search for Meaning", author: "Viktor Frankl", price: "120", old: "160", img: "" },
-    { title: "Atomic Habits", author: "James Clear", price: "140", old: "185", img: "" },
-    { title: "The 48 Laws of Power", author: "Robert Greene", price: "180", old: "240", img: "" },
-    { title: "Thinking, Fast and Slow", author: "Daniel Kahneman", price: "150", old: "200", img: "" },
-    { title: "The Silent Patient", author: "Alex Michaelides", price: "125", old: "165", img: "" },
-    { title: "Deep Work", author: "Cal Newport", price: "130", old: "170", img: "" },
-    { title: "Sapiens", author: "Yuval Noah Harari", price: "155", old: "205", img: "" },
-    { title: "The Power of Habit", author: "Charles Duhigg", price: "135", old: "175", img: "" },
-    { title: "Emotional Intelligence", author: "Daniel Goleman", price: "145", old: "190", img: "" },
-    { title: "The Subtle Art of Not Giving a F*ck", author: "Mark Manson", price: "120", old: "160", img: "" },
+        /* --- Header --- */
+        header {
+            padding: 25px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    // 31-40: Thrillers & Mystery
-    { title: "The Girl with the Dragon Tattoo", author: "Stieg Larsson", price: "130", old: "175", img: "" },
-    { title: "Gone Girl", author: "Gillian Flynn", price: "115", old: "155", img: "" },
-    { title: "Sherlock Holmes: Complete", author: "Arthur Conan Doyle", price: "190", old: "260", img: "" },
-    { title: "Murder on the Orient Express", author: "Agatha Christie", price: "105", old: "140", img: "" },
-    { title: "The Da Vinci Code", author: "Dan Brown", price: "120", old: "160", img: "" },
-    { title: "The Shining", author: "Stephen King", price: "135", old: "180", img: "" },
-    { title: "Dracula", author: "Bram Stoker", price: "110", old: "150", img: "" },
-    { title: "Frankenstein", author: "Mary Shelley", price: "105", old: "145", img: "" },
-    { title: "The Road", author: "Cormac McCarthy", price: "125", old: "165", img: "" },
-    { title: "Big Little Lies", author: "Liane Moriarty", price: "115", old: "155", img: "" },
+        .logo {
+            text-decoration: none;
+            display: inline-block;
+        }
 
-    // 41-50: Philosophy & Science
-    { title: "Thus Spoke Zarathustra", author: "Friedrich Nietzsche", price: "140", old: "190", img: "" },
-    { title: "The Republic", author: "Plato", price: "110", old: "150", img: "" },
-    { title: "The Myth of Sisyphus", author: "Albert Camus", price: "100", old: "135", img: "" },
-    { title: "Being and Nothingness", author: "Jean-Paul Sartre", price: "180", old: "250", img: "" },
-    { title: "A Brief History of Time", author: "Stephen Hawking", price: "145", old: "195", img: "" },
-    { title: "Cosmos", author: "Carl Sagan", price: "150", old: "200", img: "" },
-    { title: "The Selfish Gene", author: "Richard Dawkins", price: "140", old: "185", img: "" },
-    { title: "Brave New World", author: "Aldous Huxley", price: "110", old: "145", img: "" },
-    { title: "Fahrenheit 451", author: "Ray Bradbury", price: "105", old: "140", img: "" },
-    { title: "Clockwork Orange", author: "Anthony Burgess", price: "115", old: "155", img: "" },
+        .logo-top { color: #000; font-size: 26px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; display: block; }
+        .logo-bottom { color: var(--gold); font-size: 16px; letter-spacing: 8px; text-transform: uppercase; border-top: 1px solid var(--gold); margin-top: 5px; padding-top: 5px; }
 
-    // 51-60: History & Culture
-    { title: "Guns, Germs, and Steel", author: "Jared Diamond", price: "155", old: "210", img: "" },
-    { title: "The Silk Roads", author: "Peter Frankopan", price: "170", old: "230", img: "" },
-    { title: "The Diary of a Young Girl", author: "Anne Frank", price: "95", old: "130", img: "" },
-    { title: "Beloved", author: "Toni Morrison", price: "120", old: "165", img: "" },
-    { title: "The Handmaid's Tale", author: "Margaret Atwood", price: "125", old: "170", img: "" },
-    { title: "One Hundred Years of Solitude", author: "Gabriel Garcia Marquez", price: "135", old: "185", img: "" },
-    { title: "The Brothers Karamazov", author: "Fyodor Dostoevsky", price: "170", old: "230", img: "" },
-    { title: "Don Quixote", author: "Miguel de Cervantes", price: "180", old: "250", img: "" },
-    { title: "Great Expectations", author: "Charles Dickens", price: "125", old: "170", img: "" },
-    { title: "The Old Man and the Sea", author: "Ernest Hemingway", price: "90", old: "125", img: "" },
+        /* --- Hero Section --- */
+        .hero {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 40px; margin-bottom: 10px; }
+        .hero p { opacity: 0.8; font-weight: 300; }
 
-    // 61-70: Modern Fiction & Fantasy
-    { title: "The Hobbit", author: "J.R.R. Tolkien", price: "130", old: "180", img: "" },
-    { title: "Lord of the Rings", author: "J.R.R. Tolkien", price: "250", old: "350", img: "" },
-    { title: "Dune", author: "Frank Herbert", price: "145", old: "200", img: "" },
-    { title: "American Gods", author: "Neil Gaiman", price: "135", old: "180", img: "" },
-    { title: "Never Let Me Go", author: "Kazuo Ishiguro", price: "120", old: "165", img: "" },
-    { title: "The Kite Runner", author: "Khaled Hosseini", price: "115", old: "155", img: "" },
-    { title: "Life of Pi", author: "Yann Martel", price: "110", old: "150", img: "" },
-    { title: "Life After Life", author: "Kate Atkinson", price: "125", old: "170", img: "" },
-    { title: "The Book Thief", author: "Markus Zusak", price: "130", old: "175", img: "" },
-    { title: "Norwegian Wood", author: "Haruki Murakami", price: "125", old: "170", img: "" },
+        /* --- Grid System --- */
+        .main-container { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 35px; }
 
-    // 71-80: Drama & Plays (University Level)
-    { title: "Death of a Salesman", author: "Arthur Miller", price: "95", old: "130", img: "" },
-    { title: "The Crucible", author: "Arthur Miller", price: "95", old: "130", img: "" },
-    { title: "A Doll's House", author: "Henrik Ibsen", price: "90", old: "125", img: "" },
-    { title: "Macbeth", author: "William Shakespeare", price: "90", old: "125", img: "" },
-    { title: "Othello", author: "William Shakespeare", price: "90", old: "125", img: "" },
-    { title: "The Waste Land", author: "T.S. Eliot", price: "110", old: "150", img: "" },
-    { title: "Heart of Darkness", author: "Joseph Conrad", price: "100", old: "140", img: "" },
-    { title: "Moby Dick", author: "Herman Melville", price: "140", old: "190", img: "" },
-    { title: "The Canterbury Tales", author: "Geoffrey Chaucer", price: "150", old: "200", img: "" },
-    { title: "Paradise Lost", author: "John Milton", price: "160", old: "220", img: "" },
+        /* --- Book Card --- */
+        .book-card { background: #fff; transition: 0.3s ease; position: relative; cursor: pointer; }
+        .book-card:hover { transform: translateY(-10px); }
 
-    // 81-90: Modern Favorites
-    { title: "Kafka on the Shore", author: "Haruki Murakami", price: "145", old: "200", img: "" },
-    { title: "The Song of Achilles", author: "Madeline Miller", price: "125", old: "170", img: "" },
-    { title: "Circe", author: "Madeline Miller", price: "125", old: "170", img: "" },
-    { title: "Educated", author: "Tara Westover", price: "135", old: "185", img: "" },
-    { title: "When Breath Becomes Air", author: "Paul Kalanithi", price: "120", old: "165", img: "" },
-    { title: "The Midnight Library", author: "Matt Haig", price: "120", old: "165", img: "" },
-    { title: "Shuggie Bain", author: "Douglas Stuart", price: "140", old: "190", img: "" },
-    { title: "Where the Crawdads Sing", author: "Delia Owens", price: "115", old: "160", img: "" },
-    { title: "Small Things Like These", author: "Claire Keegan", price: "110", old: "150", img: "" },
-    { title: "Normal People", author: "Sally Rooney", price: "125", old: "170", img: "" },
+        .img-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2/3;
+            background: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
 
-    // 91-100: Philosophy & Wisdom
-    { title: "The Prince", author: "Niccolo Machiavelli", price: "95", old: "130", img: "" },
-    { title: "The Art of War", author: "Sun Tzu", price: "85", old: "120", img: "" },
-    { title: "L'Etranger", author: "Albert Camus", price: "95", old: "130", img: "" },
-    { title: "Le Petit Prince", author: "Antoine de Saint-Exupéry", price: "85", old: "115", img: "" },
-    { title: "Letters to a Young Poet", author: "Rainer Maria Rilke", price: "105", old: "145", img: "" },
-    { title: "On the Road", author: "Jack Kerouac", price: "115", old: "155", img: "" },
-    { title: "The Sun Also Rises", author: "Ernest Hemingway", price: "110", old: "150", img: "" },
-    { title: "Orlando", author: "Virginia Woolf", price: "120", old: "165", img: "" },
-    { title: "Mrs. Dalloway", author: "Virginia Woolf", price: "120", old: "165", img: "" },
-    { title: "Beyond the Cogito", author: "Library Exclusive", price: "199", old: "250", img: "" }
-];
+        .book-img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* الغلاف الذكي (عند غياب الصورة) */
+        .smart-cover {
+            width: 100%; height: 100%; background: var(--dark);
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; padding: 20px; text-align: center;
+            border: 2px solid var(--gold); box-sizing: border-box;
+        }
+        .smart-title { color: #fff; font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; }
+        .smart-author { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 12px; font-style: italic; }
+
+        .badge { position: absolute; top: 10px; left: 10px; background: var(--sale-red); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 2px; z-index: 5; }
+
+        .info { padding: 15px 0; }
+        .author-name { font-size: 11px; color: #888; text-transform: uppercase; margin: 0 0 5px 0; }
+        .title-text { font-size: 14px; font-weight: 600; margin: 0 0 10px 0; height: 40px; overflow: hidden; }
+        .price { font-weight: 700; font-size: 14px; }
+        .old-p { text-decoration: line-through; color: #ccc; font-weight: 400; margin-right: 10px; }
+
+        /* --- Reviews --- */
+        .reviews { background: var(--gray-bg); padding: 80px 20px; margin-top: 50px; text-align: center; }
+        .rev-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1100px; margin: 40px auto; }
+        .rev-card { background: #fff; padding: 30px; width: 300px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .stars { color: var(--gold); margin-bottom: 10px; }
+
+        /* --- Footer --- */
+        footer { background: #000; color: #fff; padding: 60px 20px; text-align: center; }
+        .foot-main { font-size: 14px; letter-spacing: 1px; color: #777; }
+        .foot-main b { color: var(--gold); }
+        .uni { margin-top: 20px; font-size: 11px; color: #444; text-transform: uppercase; }
+
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .hero h1 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo">
+        <span class="logo-top">Hidden</span>
+        <span class="logo-bottom">Library</span>
+    </a>
+</header>
+
+<section class="hero">
+    <h1>Discover the Masterpieces</h1>
+    <p>Premium Collection of Philosophy, Literature & Classics</p>
+</section>
+
+<div class="main-container">
+    <div class="grid" id="book-container"></div>
+</div>
+
+<section class="reviews">
+    <h2>What Our Readers Say</h2>
+    <div class="rev-grid">
+        <div class="rev-card">
+            <div class="stars">★★★★★</div>
+            <p>"The best bookstore in Morocco for English students. Fast shipping!"</p>
+            <b>Yassine Benali</b>
+        </div>
+        <div class="rev-card">
+            <div class="stars">★★★★★</div>
+            <p>"Found rare philosophy books that were impossible to find elsewhere."</p>
+            <b>Nora Mansouri</b>
+        </div>
+        <div class="rev-card">
+            <div class="stars">★★★★★</div>
+            <p>"High quality books and excellent service. 10/10!"</p>
+            <b>James Wilson</b>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="foot-main">
+        &copy; 2026 HIDDEN LIBRARY PROJECT <br>
+        Developed by: <b>CHARAFEDDINE EL AOUYNI</b> & <b>AMINE DRGHOUI</b>
+    </div>
+    <div class="uni">
+        English Studies Department | FLSHM Mohammedia - Morocco
+    </div>
+</footer>
+
+<script>
+    const books = [
+        { t: "White Nights", a: "Fyodor Dostoevsky", p: "110", o: "150", i: "" },
+        { t: "The Great Gatsby", a: "F. Scott Fitzgerald", p: "95", o: "130", i: "https://covers.openlibrary.org/b/id/8432047-L.jpg" },
+        { t: "1984", a: "George Orwell", p: "105", o: "140", i: "https://covers.openlibrary.org/b/id/12838965-L.jpg" },
+        { t: "Beyond Good and Evil", a: "Friedrich Nietzsche", p: "120", o: "160", i: "" },
+        { t: "The Stranger", a: "Albert Camus", p: "90", o: "125", i: "https://covers.openlibrary.org/b/id/12711652-L.jpg" },
+        { t: "Atomic Habits", a: "James Clear", p: "140", o: "180", i: "" },
+        { t: "Meditations", a: "Marcus Aurelius", p: "115", o: "150", i: "" },
+        { t: "Crime and Punishment", a: "Fyodor Dostoevsky", p: "135", o: "175", i: "" },
+        { t: "Hamlet", a: "William Shakespeare", p: "85", o: "115", i: "" },
+        { t: "Sapiens", a: "Yuval Noah Harari", p: "150", o: "195", i: "" },
+        { t: "The Silent Patient", a: "Alex Michaelides", p: "120", o: "160", i: "" },
+        { t: "Thinking, Fast and Slow", a: "Daniel Kahneman", p: "145", o: "190", i: "" },
+        { t: "The 48 Laws of Power", a: "Robert Greene", p: "185", o: "240", i: "" },
+        { t: "Deep Work", a: "Cal Newport", p: "130", o: "170", i: "" },
+        { t: "Man's Search for Meaning", a: "Viktor Frankl", p: "110", o: "145", i: "" },
+        { t: "Animal Farm", a: "George Orwell", p: "80", o: "110", i: "" },
+        { t: "The Alchemist", a: "Paulo Coelho", p: "95", o: "130", i: "" },
+        { t: "The Picture of Dorian Gray", a: "Oscar Wilde", p: "105", o: "140", i: "" },
+        { t: "Wuthering Heights", a: "Emily Brontë", p: "115", o: "150", i: "" },
+        { t: "Jane Eyre", a: "Charlotte Brontë", p: "115", o: "150", i: "" },
+        { t: "Pride and Prejudice", a: "Jane Austen", p: "110", o: "145", i: "" },
+        { t: "Ulysses", a: "James Joyce", p: "165", o: "220", i: "" },
+        { t: "The Trial", a: "Franz Kafka", p: "95", o: "130", i: "" },
+        { t: "Notes from Underground", a: "Fyodor Dostoevsky", p: "90", o: "125", i: "" },
+        { t: "Waiting for Godot", a: "Samuel Beckett", p: "105", o: "140", i: "" },
+        { t: "To Kill a Mockingbird", a: "Harper Lee", p: "120", o: "160", i: "" },
+        { t: "The Metamorphosis", a: "Franz Kafka", p: "85", o: "115", i: "" },
+        { t: "Thus Spoke Zarathustra", a: "Friedrich Nietzsche", p: "145", o: "195", i: "" },
+        { t: "The Republic", a: "Plato", p: "115", o: "155", i: "" },
+        { t: "A Brief History of Time", a: "Stephen Hawking", p: "140", o: "185", i: "" },
+        { t: "Dune", a: "Frank Herbert", p: "150", o: "205", i: "" },
+        { t: "Brave New World", a: "Aldous Huxley", p: "110", o: "150", i: "" },
+        { t: "Fahrenheit 451", a: "Ray Bradbury", p: "105", o: "140", i: "" },
+        { t: "The Book Thief", a: "Markus Zusak", p: "130", o: "175", i: "" },
+        { t: "The Kite Runner", a: "Khaled Hosseini", p: "115", o: "160", i: "" },
+        { t: "Life of Pi", a: "Yann Martel", p: "105", o: "145", i: "" },
+        { t: "The Shining", a: "Stephen King", p: "135", o: "180", i: "" },
+        { t: "Dracula", a: "Bram Stoker", p: "115", o: "155", i: "" },
+        { t: "Frankenstein", a: "Mary Shelley", p: "110", o: "150", i: "" },
+        { t: "The Road", a: "Cormac McCarthy", p: "125", o: "170", i: "" },
+        { t: "Siddhartha", a: "Hermann Hesse", p: "95", o: "130", i: "" },
+        { t: "Norwegian Wood", a: "Haruki Murakami", p: "130", o: "175", i: "" },
+        { t: "Kafka on the Shore", a: "Haruki Murakami", p: "145", o: "195", i: "" },
+        { t: "The Song of Achilles", a: "Madeline Miller", p: "125", o: "170", i: "" },
+        { t: "Circe", a: "Madeline Miller", p: "125", o: "170", i: "" },
+        { t: "Normal People", a: "Sally Rooney", p: "120", o: "165", i: "" },
+        { t: "Educated", a: "Tara Westover", p: "135", o: "185", i: "" },
+        { t: "Becoming", a: "Michelle Obama", p: "160", o: "210", i: "" },
+        { t: "The 5 AM Club", a: "Robin Sharma", p: "125", o: "170", i: "" },
+        { t: "Rich Dad Poor Dad", a: "Robert Kiyosaki", p: "130", o: "175", i: "" },
+        { t: "The Art of War", a: "Sun Tzu", p: "85", o: "120", i: "" },
+        { t: "The Prince", a: "Niccolo Machiavelli", p: "90", o: "125", i: "" },
+        { t: "Guns, Germs, and Steel", a: "Jared Diamond", p: "155", o: "210", i: "" },
+        { t: "The Silk Roads", a: "Peter Frankopan", p: "170", o: "230", i: "" },
+        { t: "The Handmaid's Tale", a: "Margaret Atwood", p: "120", o: "165", i: "" },
+        { t: "Beloved", a: "Toni Morrison", p: "125", o: "170", i: "" },
+        { t: "The Catch-22", a: "Joseph Heller", p: "115", o: "160", i: "" },
+        { t: "The Old Man and the Sea", a: "Ernest Hemingway", p: "90", o: "125", i: "" },
+        { t: "On the Road", a: "Jack Kerouac", p: "120", o: "165", i: "" },
+        { t: "Lolita", a: "Vladimir Nabokov", p: "135", o: "185", i: "" },
+        { t: "The Brothers Karamazov", a: "Fyodor Dostoevsky", p: "170", o: "230", i: "" },
+        { t: "Anna Karenina", a: "Leo Tolstoy", p: "175", o: "240", i: "" },
+        { t: "War and Peace", a: "Leo Tolstoy", p: "220", o: "300", i: "" },
+        { t: "Madame Bovary", a: "Gustave Flaubert", p: "110", o: "150", i: "" },
+        { t: "Les Misérables", a: "Victor Hugo", p: "190", o: "260", i: "" },
+        { t: "The Hobbit", a: "J.R.R. Tolkien", p: "130", o: "180", i: "" },
+        { t: "The Fellowship of the Ring", a: "J.R.R. Tolkien", p: "150", o: "210", i: "" },
+        { t: "Harry Potter Collection", a: "J.K. Rowling", p: "450", o: "600", i: "" },
+        { t: "A Game of Thrones", a: "George R.R. Martin", p: "145", o: "200", i: "" },
+        { t: "The Name of the Wind", a: "Patrick Rothfuss", p: "140", o: "190", i: "" },
+        { t: "Mistborn", a: "Brandon Sanderson", p: "135", o: "185", i: "" },
+        { t: "The Way of Kings", a: "Brandon Sanderson", p: "180", o: "250", i: "" },
+        { t: "Neuromancer", a: "William Gibson", p: "120", o: "165", i: "" },
+        { t: "The Left Hand of Darkness", a: "Ursula K. Le Guin", p: "125", o: "170", i: "" },
+        { t: "Foundation", a: "Isaac Asimov", p: "115", o: "160", i: "" },
+        { t: "The Martian", a: "Andy Weir", p: "120", o: "165", i: "" },
+        { t: "Project Hail Mary", a: "Andy Weir", p: "140", o: "190", i: "" },
+        { t: "Exhalation", a: "Ted Chiang", p: "130", o: "175", i: "" },
+        { t: "The Power", a: "Naomi Alderman", p: "115", o: "160", i: "" },
+        { t: "Station Eleven", a: "Emily St. John Mandel", p: "120", o: "165", i: "" },
+        { t: "Small Gods", a: "Terry Pratchett", p: "110", o: "150", i: "" },
+        { t: "Good Omens", a: "Neil Gaiman & Terry Pratchett", p: "125", o: "170", i: "" },
+        { t: "The Ocean at the End of the Lane", a: "Neil Gaiman", p: "110", o: "150", i: "" },
+        { t: "The God of Small Things", a: "Arundhati Roy", p: "120", o: "165", i: "" },
+        { t: "Midnight's Children", a: "Salman Rushdie", p: "135", o: "185", i: "" },
+        { t: "White Teeth", a: "Zadie Smith", p: "125", o: "170", i: "" },
+        { t: "A Little Life", a: "Hanya Yanagihara", p: "155", o: "210", i: "" },
+        { t: "The Goldfinch", a: "Donna Tartt", p: "145", o: "195", i: "" },
+        { t: "The Secret History", a: "Donna Tartt", p: "140", o: "190", i: "" },
+        { t: "Everything I Never Told You", a: "Celeste Ng", p: "115", o: "160", i: "" },
+        { t: "The Vanishing Half", a: "Brit Bennett", p: "125", o: "170", i: "" },
+        { t: "Crying in H Mart", a: "Michelle Zauner", p: "130", o: "175", i: "" },
+        { t: "Tomorrow, and Tomorrow, and Tomorrow", a: "Gabrielle Zevin", p: "140", o: "190", i: "" },
+        { t: "The Seven Husbands of Evelyn Hugo", a: "Taylor Jenkins Reid", p: "125", o: "170", i: "" },
+        { t: "Verity", a: "Colleen Hoover", p: "115", o: "160", i: "" },
+        { t: "It Ends with Us", a: "Colleen Hoover", p: "120", o: "165", i: "" },
+        { t: "Where the Crawdads Sing", a: "Delia Owens", p: "120", o: "165", i: "" },
+        { t: "The Midnight Library", a: "Matt Haig", p: "115", o: "160", i: "" },
+        { t: "Beyond the Cogito", a: "Library Special", p: "199", o: "250", i: "" },
+        { t: "The Final Piece", a: "Hidden Library", p: "299", o: "400", i: "" }
+    ];
+
+    function createCard(book) {
+        const cover = book.i 
+            ? `<img src="${book.i}" class="book-img" alt="${book.t}" onerror="this.parentElement.innerHTML=genSmart('${book.t}','${book.a}')">`
+            : genSmart(book.t, book.a);
+
+        return `
+            <div class="book-card">
+                <div class="badge">Sale</div>
+                <div class="img-box">${cover}</div>
+                <div class="info">
+                    <p class="author-name">${book.a}</p>
+                    <h3 class="title-text">${book.t}</h3>
+                    <div class="price">
+                        <span class="old-p">${book.o}.00 dh</span>
+                        <span>${book.p}.00 dh</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function genSmart(t, a) {
+        return `<div class="smart-cover"><div class="smart-title">${t}</div><div class="smart-author">${a}</div></div>`;
+    }
+
+    const container = document.getElementById('book-container');
+    books.forEach(b => container.innerHTML += createCard(b));
+</script>
+
+</body>
+</html>
