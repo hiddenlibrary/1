@@ -1,315 +1,148 @@
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden Library | Philosophical Works</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #fdfcf0;
-            --main: #000000;
-            --accent: #ff4d00; /* Sharp Neo-Brutalism Orange */
-            --border: 3px solid #000;
-            --shadow: 8px 8px 0px #000;
-        }
+:root {
+    --primary: #121212;
+    --accent-gold: #c5a059;
+    --text-light: #e0e0e0;
+    --paper-white: #fdfcf8;
+    --spine-dark: rgba(0,0,0,0.3);
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            background-color: var(--bg);
-            color: var(--main);
-            overflow-x: hidden;
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--paper-white);
+    color: var(--primary);
+    line-height: 1.6;
+}
 
-        /* --- Header --- */
-        header {
-            border-bottom: var(--border);
-            padding: 60px 5%;
-            text-align: center;
-            background: #fff;
-        }
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 6%;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            line-height: 0.9;
-        }
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
 
-        header p {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-top: 10px;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
+.logo span { color: var(--accent-gold); }
 
-        /* --- Grid System --- */
-        .container {
-            width: 90%;
-            margin: 60px auto;
-        }
+.nav-links { display: flex; list-style: none; gap: 35px; }
+.nav-links a { text-decoration: none; color: #444; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; }
 
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-        }
+.member-btn {
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-        /* --- Book Card --- */
-        .book-card {
-            background: white;
-            border: var(--border);
-            box-shadow: var(--shadow);
-            padding: 15px;
-            transition: 0.2s ease-in-out;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
+/* Hero */
+.hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
 
-        .book-card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 12px 12px 0px var(--accent);
-        }
+.hero-content { max-width: 800px; padding: 20px; }
+.hero-content h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; margin: 15px 0; }
+.hero-content span { font-style: italic; color: var(--accent-gold); font-size: 1.1rem; }
 
-        .book-card img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-bottom: var(--border);
-            margin-bottom: 15px;
-            filter: grayscale(20%);
-        }
+.btn-gold { background: var(--accent-gold); color: white; border: none; padding: 15px 35px; margin-right: 15px; cursor: pointer; border-radius: 5px; font-weight: bold;}
+.btn-outline { background: transparent; border: 2px solid white; color: white; padding: 13px 35px; cursor: pointer; border-radius: 5px;}
 
-        .book-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-            font-family: 'Playfair Display', serif;
-        }
+/* Library Grid */
+.library-container { padding: 100px 6%; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; margin-bottom: 70px; }
 
-        .author-tag {
-            background: var(--main);
-            color: white;
-            padding: 2px 8px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 60px;
+}
 
-        .btn-buy {
-            margin-top: auto;
-            background: var(--accent);
-            color: #fff;
-            border: var(--border);
-            padding: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+.book-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    transition: 0.4s ease;
+}
 
-        .btn-buy:hover {
-            background: #000;
-        }
+.book-card:hover { transform: translateY(-10px); }
 
-        /* --- Modal (Details) --- */
-        .modal {
-            display: none;
-            position: fixed;
-            top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+/* CSS-Built Book Covers */
+.book-visual {
+    height: 450px;
+    position: relative;
+    border-radius: 4px 12px 12px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+}
 
-        .modal-content {
-            background: var(--bg);
-            border: 5px solid #000;
-            box-shadow: 20px 20px 0px var(--accent);
-            max-width: 900px;
-            width: 100%;
-            padding: 40px;
-            display: flex;
-            gap: 40px;
-            position: relative;
-        }
+.spine {
+    position: absolute;
+    left: 0; top: 0; width: 30px; height: 100%;
+    background: var(--spine-dark);
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
 
-        .close-btn {
-            position: absolute;
-            top: 10px; right: 20px;
-            font-size: 2.5rem;
-            cursor: pointer;
-            font-weight: 800;
-        }
+.cover-nietzsche { background: linear-gradient(135deg, #4b0000, #2a0000); }
+.cover-camus { background: linear-gradient(135deg, #1d3124, #0a110d); }
+.cover-dosto { background: linear-gradient(135deg, #1b263b, #0d1b2a); }
+.cover-kafka { background: linear-gradient(135deg, #432818, #2a1a0f); }
 
-        /* --- Reviews --- */
-        .reviews {
-            margin-top: 100px;
-            border-top: var(--border);
-            padding: 60px 5%;
-            background: #000;
-            color: #fff;
-        }
+.author-label { font-size: 0.8rem; letter-spacing: 4px; opacity: 0.8; margin-bottom: 20px; }
+.title-label { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: bold; border-top: 1px solid var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding: 15px 0; }
+.crest { margin-top: 30px; border: 2px solid var(--accent-gold); width: 50px; height: 50px; border-radius: 50%; line-height: 46px; font-weight: bold; color: var(--accent-gold); }
 
-        .review-card {
-            border: 2px solid #fff;
-            padding: 25px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
+/* Book Data */
+.book-data { padding: 30px 10px; }
+.meta { font-size: 0.8rem; color: var(--accent-gold); font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
+.summary { font-size: 0.9rem; color: #666; margin-bottom: 20px; height: 70px; overflow: hidden; }
+.price { font-size: 1.8rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
 
-        .review-card:hover {
-            background: var(--accent);
-        }
+.card-btns { display: flex; gap: 10px; }
+.buy-now { flex: 2; background: var(--primary); color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
+.details { flex: 1; background: #f4f4f4; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
 
-        /* --- Footer --- */
-        footer {
-            padding: 80px 5%;
-            background: #fff;
-            border-top: var(--border);
-            text-align: center;
-        }
+/* Footer */
+footer {
+    background: #111;
+    color: #999;
+    padding: 80px 6% 40px;
+    text-align: center;
+}
 
-        .credits {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 20px 0;
-            letter-spacing: 2px;
-        }
-
-        .names {
-            color: var(--accent);
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 3rem; }
-            .modal-content { flex-direction: column; overflow-y: auto; height: 90vh; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>HIDDEN LIBRARY</h1>
-        <p>A Curated Collection of Existentialist & Philosophical Works</p>
-    </header>
-
-    <div class="container">
-        <div class="book-grid" id="bookGrid">
-            <!-- 100 Books injected here -->
-        </div>
-    </div>
-
-    <!-- Details Modal -->
-    <div class="modal" id="bookModal">
-        <div class="modal-content" id="modalBody">
-            <!-- Content Injected -->
-        </div>
-    </div>
-
-    <section class="reviews">
-        <h2 style="font-size: 3rem; margin-bottom: 40px; font-family: 'Playfair Display';">Critical Reviews</h2>
-        <div id="reviewGrid"></div>
-    </section>
-
-    <footer>
-        <p>Academic Project Developed By</p>
-        <div class="credits">
-            <span class="names">CHARAFEDDINE EL AOUYNI</span> & <span class="names">AMINE DRGHOUI</span>
-        </div>
-        <p>© 2024 Hidden Library - For Educational Purposes Only</p>
-    </footer>
-
-    <script>
-        const authors = ["Friedrich Nietzsche", "Fyodor Dostoevsky", "Franz Kafka", "Albert Camus", "Jean-Paul Sartre", "Arthur Schopenhauer", "Søren Kierkegaard"];
-        const titles = [
-            "The Stranger", "Crime and Punishment", "The Trial", "Thus Spoke Zarathustra", "Nausea", 
-            "The Myth of Sisyphus", "The Brothers Karamazov", "Beyond Good and Evil", "The Metamorphosis", 
-            "No Exit", "The Plague", "The Castle", "The Idiot", "Fear and Trembling", "The Fall"
-        ];
-
-        const descriptions = [
-            "A deep dive into the absurdity of existence and the indifference of the universe.",
-            "An intense psychological exploration of guilt, morality, and the search for redemption.",
-            "A masterpiece of existential dread, highlighting the struggle against incomprehensible powers.",
-            "Challenging traditional morality and introducing the concept of the Übermensch."
-        ];
-
-        // Generate 100 Books
-        const bookGrid = document.getElementById('bookGrid');
-        for (let i = 1; i <= 100; i++) {
-            const author = authors[Math.floor(Math.random() * authors.length)];
-            const title = titles[Math.floor(Math.random() * titles.length)];
-            const imgId = 100 + i; // Different image for each book
-
-            const card = document.createElement('div');
-            card.className = 'book-card';
-            card.innerHTML = `
-                <img src="https://picsum.photos/seed/${imgId}/400/600" alt="Book Cover">
-                <div class="author-tag">${author}</div>
-                <h3>${title}</h3>
-                <p style="margin-bottom:15px; font-size:0.9rem; opacity:0.7">Limited Edition | Hardcover</p>
-                <button class="btn-buy" onclick="openModal('${title}', '${author}', ${imgId})">View Details</button>
-            `;
-            bookGrid.appendChild(card);
-        }
-
-        function openModal(title, author, imgId) {
-            const modal = document.getElementById('bookModal');
-            const body = document.getElementById('modalBody');
-            const desc = descriptions[Math.floor(Math.random() * descriptions.length)];
-
-            body.innerHTML = `
-                <span class="close-btn" onclick="closeModal()">&times;</span>
-                <img src="https://picsum.photos/seed/${imgId}/400/600" style="width:350px; border:var(--border)">
-                <div>
-                    <span class="author-tag" style="background:var(--accent)">Rare Philosophical Find</span>
-                    <h2 style="font-size:3rem; font-family:'Playfair Display'">${title}</h2>
-                    <h4 style="margin-bottom:20px">Author: ${author}</h4>
-                    <p style="font-size:1.1rem; line-height:1.8; margin-bottom:20px">${desc} This edition features exclusive commentary and historical context of the philosophical movement.</p>
-                    <p style="font-size:1.5rem; font-weight:800">$29.99</p>
-                    <button class="btn-buy" style="width:100%; margin-top:20px; font-size:1.2rem">Add to Collection</button>
-                </div>
-            `;
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('bookModal').style.display = 'none';
-        }
-
-        // Logical English Reviews
-        const reviewsData = [
-            {name: "Prof. Julian Harrison", text: "The Hidden Library curates the most profound translations of Dostoevsky I've ever encountered. Essential for any philosophy student."},
-            {name: "Eleanor Vance", text: "The Neo-Brutalism design of the site reflects the harsh truths of Kafka's literature perfectly. A masterpiece of web design."},
-            {name: "Marcus Thorne", text: "As a collector, I find their 'Rare Find' section invaluable. The quality of the prints matches the weight of the ideas within."},
-            {name: "Dr. Sarah Jenkins", text: "Finally, a bookstore that treats philosophy with the grit and boldness it deserves. Excellent navigation and selection."}
-        ];
-
-        const revGrid = document.getElementById('reviewGrid');
-        reviewsData.forEach(r => {
-            revGrid.innerHTML += `
-                <div class="review-card">
-                    <h4 style="color:var(--accent)">${r.name}</h4>
-                    <p style="font-style:italic; margin-top:10px">"${r.text}"</p>
-                </div>
-            `;
-        });
-
-        // Close modal on outside click
-        window.onclick = (e) => { if(e.target == document.getElementById('bookModal')) closeModal(); }
-    </script>
-</body>
-</html>
+.footer-content strong { color: var(--accent-gold); }
+.dev-team { margin: 30px 0; font-size: 1.2rem; border-top: 1px solid #333; padding-top: 30px; }
+.uni-affiliation { font-size: 0.8rem; font-style: italic; opacity: 0.6; margin-top: 20px;}
