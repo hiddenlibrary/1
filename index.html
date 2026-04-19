@@ -1,148 +1,156 @@
-:root {
-    --primary: #121212;
-    --accent-gold: #c5a059;
-    --text-light: #e0e0e0;
-    --paper-white: #fdfcf8;
-    --spine-dark: rgba(0,0,0,0.3);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Library | Philosophical Manuscripts</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for a classic scholarly feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">HIDDEN<span>LIBRARY</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Existentialism</a></li>
+            <li><a href="#">Nihilism</a></li>
+            <li><a href="#">The Classics</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="icon-btn">🔍</button>
+            <button class="icon-btn">🛒</button>
+            <button class="member-btn">Member Access</button>
+        </div>
+    </nav>
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--paper-white);
-    color: var(--primary);
-    line-height: 1.6;
-}
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="fade-in">Established in Silence</span>
+            <h1>Where Thought Transcends Time</h1>
+            <p>A curated collection of the most profound philosophical works. Explore the depths of the human condition through the minds of Kafka, Camus, and Nietzsche.</p>
+            <div class="hero-btns">
+                <button class="btn-gold">Explore Collection</button>
+                <button class="btn-outline">New Arrivals</button>
+            </div>
+        </div>
+    </header>
 
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 6%;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+    <!-- Library Grid -->
+    <section class="library-container">
+        <h2 class="section-title">The Essential Manuscripts</h2>
+        
+        <div class="books-grid">
+            
+            <!-- Book 1: Nietzsche -->
+            <div class="book-card">
+                <div class="book-visual cover-nietzsche">
+                    <div class="spine"></div>
+                    <div class="cover-info">
+                        <p class="author-label">F. NIETZSCHE</p>
+                        <h3 class="title-label">THUS SPOKE ZARATHUSTRA</h3>
+                        <div class="crest">HL</div>
+                    </div>
+                </div>
+                <div class="book-data">
+                    <h3>Thus Spoke Zarathustra</h3>
+                    <p class="meta">1883 • Philosophy / Fiction</p>
+                    <p class="summary">A monumental work exploring the Übermensch, the death of God, and the eternal recurrence.</p>
+                    <div class="price">$22.50</div>
+                    <div class="card-btns">
+                        <button class="buy-now">Add to Cart</button>
+                        <button class="details">View Specs</button>
+                    </div>
+                </div>
+            </div>
 
-.logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    font-weight: 700;
-}
+            <!-- Book 2: Camus -->
+            <div class="book-card">
+                <div class="book-visual cover-camus">
+                    <div class="spine"></div>
+                    <div class="cover-info">
+                        <p class="author-label">ALBERT CAMUS</p>
+                        <h3 class="title-label">THE MYTH OF SISYPHUS</h3>
+                        <div class="crest">HL</div>
+                    </div>
+                </div>
+                <div class="book-data">
+                    <h3>The Myth of Sisyphus</h3>
+                    <p class="meta">1942 • Absurdism</p>
+                    <p class="summary">Camus introduces his philosophy of the absurd: the conflict between the search for meaning and the silent universe.</p>
+                    <div class="price">$18.00</div>
+                    <div class="card-btns">
+                        <button class="buy-now">Add to Cart</button>
+                        <button class="details">View Specs</button>
+                    </div>
+                </div>
+            </div>
 
-.logo span { color: var(--accent-gold); }
+            <!-- Book 3: Dostoevsky -->
+            <div class="book-card">
+                <div class="book-visual cover-dosto">
+                    <div class="spine"></div>
+                    <div class="cover-info">
+                        <p class="author-label">F. DOSTOEVSKY</p>
+                        <h3 class="title-label">NOTES FROM UNDERGROUND</h3>
+                        <div class="crest">HL</div>
+                    </div>
+                </div>
+                <div class="book-data">
+                    <h3>Notes from Underground</h3>
+                    <p class="meta">1864 • Existential Fiction</p>
+                    <p class="summary">The first existentialist novel, presenting the bitter, isolated, and complex "Underground Man".</p>
+                    <div class="price">$15.99</div>
+                    <div class="card-btns">
+                        <button class="buy-now">Add to Cart</button>
+                        <button class="details">View Specs</button>
+                    </div>
+                </div>
+            </div>
 
-.nav-links { display: flex; list-style: none; gap: 35px; }
-.nav-links a { text-decoration: none; color: #444; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; }
+            <!-- Book 4: Kafka -->
+            <div class="book-card">
+                <div class="book-visual cover-kafka">
+                    <div class="spine"></div>
+                    <div class="cover-info">
+                        <p class="author-label">FRANZ KAFKA</p>
+                        <h3 class="title-label">THE METAMORPHOSIS</h3>
+                        <div class="crest">HL</div>
+                    </div>
+                </div>
+                <div class="book-data">
+                    <h3>The Metamorphosis</h3>
+                    <p class="meta">1915 • Modernist Fiction</p>
+                    <p class="summary">A nightmare narrative of alienation, guilt, and the absurdity of the human social structure.</p>
+                    <div class="price">$12.50</div>
+                    <div class="card-btns">
+                        <button class="buy-now">Add to Cart</button>
+                        <button class="details">View Specs</button>
+                    </div>
+                </div>
+            </div>
 
-.member-btn {
-    background: var(--primary);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+        </div>
+    </section>
 
-/* Hero */
-.hero {
-    height: 80vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2024 HIDDEN LIBRARY MANUSCRIPTS
+            </div>
+            <div class="dev-team">
+                Curated & Developed by: <br>
+                <strong>CHARAFEDDINE EL AOUYNI</strong> & <strong>AMINE DRGHOUI</strong>
+            </div>
+            <div class="uni-affiliation">
+                English Department | Academic Project
+            </div>
+        </div>
+    </footer>
 
-.hero-content { max-width: 800px; padding: 20px; }
-.hero-content h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; margin: 15px 0; }
-.hero-content span { font-style: italic; color: var(--accent-gold); font-size: 1.1rem; }
-
-.btn-gold { background: var(--accent-gold); color: white; border: none; padding: 15px 35px; margin-right: 15px; cursor: pointer; border-radius: 5px; font-weight: bold;}
-.btn-outline { background: transparent; border: 2px solid white; color: white; padding: 13px 35px; cursor: pointer; border-radius: 5px;}
-
-/* Library Grid */
-.library-container { padding: 100px 6%; }
-.section-title { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; margin-bottom: 70px; }
-
-.books-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 60px;
-}
-
-.book-card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-    transition: 0.4s ease;
-}
-
-.book-card:hover { transform: translateY(-10px); }
-
-/* CSS-Built Book Covers */
-.book-visual {
-    height: 450px;
-    position: relative;
-    border-radius: 4px 12px 12px 4px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    text-align: center;
-    color: white;
-    box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
-}
-
-.spine {
-    position: absolute;
-    left: 0; top: 0; width: 30px; height: 100%;
-    background: var(--spine-dark);
-    border-right: 1px solid rgba(255,255,255,0.1);
-}
-
-.cover-nietzsche { background: linear-gradient(135deg, #4b0000, #2a0000); }
-.cover-camus { background: linear-gradient(135deg, #1d3124, #0a110d); }
-.cover-dosto { background: linear-gradient(135deg, #1b263b, #0d1b2a); }
-.cover-kafka { background: linear-gradient(135deg, #432818, #2a1a0f); }
-
-.author-label { font-size: 0.8rem; letter-spacing: 4px; opacity: 0.8; margin-bottom: 20px; }
-.title-label { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: bold; border-top: 1px solid var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding: 15px 0; }
-.crest { margin-top: 30px; border: 2px solid var(--accent-gold); width: 50px; height: 50px; border-radius: 50%; line-height: 46px; font-weight: bold; color: var(--accent-gold); }
-
-/* Book Data */
-.book-data { padding: 30px 10px; }
-.meta { font-size: 0.8rem; color: var(--accent-gold); font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
-.summary { font-size: 0.9rem; color: #666; margin-bottom: 20px; height: 70px; overflow: hidden; }
-.price { font-size: 1.8rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
-
-.card-btns { display: flex; gap: 10px; }
-.buy-now { flex: 2; background: var(--primary); color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
-.details { flex: 1; background: #f4f4f4; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
-
-/* Footer */
-footer {
-    background: #111;
-    color: #999;
-    padding: 80px 6% 40px;
-    text-align: center;
-}
-
-.footer-content strong { color: var(--accent-gold); }
-.dev-team { margin: 30px 0; font-size: 1.2rem; border-top: 1px solid #333; padding-top: 30px; }
-.uni-affiliation { font-size: 0.8rem; font-style: italic; opacity: 0.6; margin-top: 20px;}
+</body>
+</html>
