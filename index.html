@@ -1,115 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden Library | Official Academic Store</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root { --gold: #b5945b; --dark: #0a0a0a; --accent: #1a1a1a; }
-        body { font-family: 'Georgia', serif; background: #fdfcf9; margin: 0; color: #333; scroll-behavior: smooth; }
-        
-        /* Navigation */
-        nav { background: var(--dark); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--gold); }
-        .logo { color: white; font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; text-transform: uppercase; font-weight: 900; }
-        .logo span { color: var(--gold); }
-        .search-box { background: var(--accent); border: 1px solid #333; padding: 10px 20px; border-radius: 30px; color: white; width: 250px; outline: none; transition: 0.3s; }
-        .search-box:focus { width: 350px; border-color: var(--gold); }
+const booksData = [
+    // 1-10: Classics & Philosophy
+    { title: "White Nights", author: "Fyodor Dostoevsky", price: "110", old: "150", img: "" },
+    { title: "The Stranger", author: "Albert Camus", price: "95", old: "120", img: "https://covers.openlibrary.org/b/id/12711652-L.jpg" },
+    { title: "Beyond Good and Evil", author: "Friedrich Nietzsche", price: "130", old: "170", img: "" },
+    { title: "The Great Gatsby", author: "F. Scott Fitzgerald", price: "105", old: "140", img: "https://covers.openlibrary.org/b/id/8432047-L.jpg" },
+    { title: "1984", author: "George Orwell", price: "110", old: "145", img: "https://covers.openlibrary.org/b/id/12838965-L.jpg" },
+    { title: "Crime and Punishment", author: "Fyodor Dostoevsky", price: "145", old: "190", img: "" },
+    { title: "The Metamorphosis", author: "Franz Kafka", price: "85", old: "110", img: "https://covers.openlibrary.org/b/id/12643564-L.jpg" },
+    { title: "Hamlet", author: "William Shakespeare", price: "90", old: "120", img: "" },
+    { title: "The Alchemist", author: "Paulo Coelho", price: "95", old: "130", img: "" },
+    { title: "Meditations", author: "Marcus Aurelius", price: "120", old: "160", img: "" },
 
-        /* Hero Section */
-        .hero { 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000'); 
-            background-size: cover; height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
-        }
+    // 11-20: Literature & Modern Reads
+    { title: "To Kill a Mockingbird", author: "Harper Lee", price: "115", old: "150", img: "" },
+    { title: "Animal Farm", author: "George Orwell", price: "80", old: "110", img: "" },
+    { title: "The Picture of Dorian Gray", author: "Oscar Wilde", price: "100", old: "135", img: "" },
+    { title: "Wuthering Heights", author: "Emily Brontë", price: "110", old: "145", img: "" },
+    { title: "Jane Eyre", author: "Charlotte Brontë", price: "110", old: "145", img: "" },
+    { title: "Pride and Prejudice", author: "Jane Austen", price: "115", old: "155", img: "" },
+    { title: "Ulysses", author: "James Joyce", price: "160", old: "210", img: "" },
+    { title: "The Trial", author: "Franz Kafka", price: "95", old: "130", img: "" },
+    { title: "Notes from Underground", author: "Fyodor Dostoevsky", price: "90", old: "125", img: "" },
+    { title: "Waiting for Godot", author: "Samuel Beckett", price: "105", old: "140", img: "" },
 
-        /* Library Grid */
-        .main-container { padding: 60px 5%; max-width: 1400px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 35px; }
-        
-        .book-card { background: white; border-radius: 8px; overflow: hidden; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; position: relative; }
-        .book-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        
-        .cover-wrapper { height: 320px; background: #f0f0f0; position: relative; overflow: hidden; }
-        .cover-img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .book-info { padding: 20px; }
-        .book-title { font-weight: bold; font-size: 1.05rem; margin-bottom: 5px; color: var(--dark); height: 2.4em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-        .book-author { font-style: italic; color: #777; font-size: 0.85rem; }
-        
-        .purchase-row { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; border-top: 1px solid #f0f0f0; padding-top: 15px; }
-        .price { color: var(--gold); font-weight: bold; font-size: 1.1rem; }
-        .btn-add { background: var(--dark); color: white; border: none; padding: 8px 12px; cursor: pointer; font-size: 0.7rem; font-weight: bold; transition: 0.3s; border-radius: 4px; }
-        .btn-add:hover { background: var(--gold); }
+    // 21-30: Psychology & Self-Help
+    { title: "Man's Search for Meaning", author: "Viktor Frankl", price: "120", old: "160", img: "" },
+    { title: "Atomic Habits", author: "James Clear", price: "140", old: "185", img: "" },
+    { title: "The 48 Laws of Power", author: "Robert Greene", price: "180", old: "240", img: "" },
+    { title: "Thinking, Fast and Slow", author: "Daniel Kahneman", price: "150", old: "200", img: "" },
+    { title: "The Silent Patient", author: "Alex Michaelides", price: "125", old: "165", img: "" },
+    { title: "Deep Work", author: "Cal Newport", price: "130", old: "170", img: "" },
+    { title: "Sapiens", author: "Yuval Noah Harari", price: "155", old: "205", img: "" },
+    { title: "The Power of Habit", author: "Charles Duhigg", price: "135", old: "175", img: "" },
+    { title: "Emotional Intelligence", author: "Daniel Goleman", price: "145", old: "190", img: "" },
+    { title: "The Subtle Art of Not Giving a F*ck", author: "Mark Manson", price: "120", old: "160", img: "" },
 
-        /* Reviews (Glassmorphism) */
-        .reviews { background: var(--dark); padding: 80px 5%; color: white; text-align: center; }
-        .rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
-        .rev-card { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
-        .stars { color: var(--gold); margin-bottom: 10px; }
+    // 31-40: Thrillers & Mystery
+    { title: "The Girl with the Dragon Tattoo", author: "Stieg Larsson", price: "130", old: "175", img: "" },
+    { title: "Gone Girl", author: "Gillian Flynn", price: "115", old: "155", img: "" },
+    { title: "Sherlock Holmes: Complete", author: "Arthur Conan Doyle", price: "190", old: "260", img: "" },
+    { title: "Murder on the Orient Express", author: "Agatha Christie", price: "105", old: "140", img: "" },
+    { title: "The Da Vinci Code", author: "Dan Brown", price: "120", old: "160", img: "" },
+    { title: "The Shining", author: "Stephen King", price: "135", old: "180", img: "" },
+    { title: "Dracula", author: "Bram Stoker", price: "110", old: "150", img: "" },
+    { title: "Frankenstein", author: "Mary Shelley", price: "105", old: "145", img: "" },
+    { title: "The Road", author: "Cormac McCarthy", price: "125", old: "165", img: "" },
+    { title: "Big Little Lies", author: "Liane Moriarty", price: "115", old: "155", img: "" },
 
-        /* Academic Footer */
-        footer { background: #050505; color: #666; padding: 60px 20px; text-align: center; border-top: 3px solid var(--gold); }
-        .dev-names { color: var(--gold); font-weight: bold; font-size: 1.3rem; margin: 15px 0; letter-spacing: 1px; }
-        
-        .back-to-top { position: fixed; bottom: 30px; right: 30px; background: var(--gold); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 1000; }
-    </style>
-</head>
-<body>
+    // 41-50: Philosophy & Science
+    { title: "Thus Spoke Zarathustra", author: "Friedrich Nietzsche", price: "140", old: "190", img: "" },
+    { title: "The Republic", author: "Plato", price: "110", old: "150", img: "" },
+    { title: "The Myth of Sisyphus", author: "Albert Camus", price: "100", old: "135", img: "" },
+    { title: "Being and Nothingness", author: "Jean-Paul Sartre", price: "180", old: "250", img: "" },
+    { title: "A Brief History of Time", author: "Stephen Hawking", price: "145", old: "195", img: "" },
+    { title: "Cosmos", author: "Carl Sagan", price: "150", old: "200", img: "" },
+    { title: "The Selfish Gene", author: "Richard Dawkins", price: "140", old: "185", img: "" },
+    { title: "Brave New World", author: "Aldous Huxley", price: "110", old: "145", img: "" },
+    { title: "Fahrenheit 451", author: "Ray Bradbury", price: "105", old: "140", img: "" },
+    { title: "Clockwork Orange", author: "Anthony Burgess", price: "115", old: "155", img: "" },
 
-    <nav>
-        <a href="#" class="logo">HIDDEN <span>LIBRARY</span></a>
-        <input type="text" class="search-box" id="search" placeholder="Find a masterpiece..." onkeyup="filter()">
-    </nav>
+    // 51-60: History & Culture
+    { title: "Guns, Germs, and Steel", author: "Jared Diamond", price: "155", old: "210", img: "" },
+    { title: "The Silk Roads", author: "Peter Frankopan", price: "170", old: "230", img: "" },
+    { title: "The Diary of a Young Girl", author: "Anne Frank", price: "95", old: "130", img: "" },
+    { title: "Beloved", author: "Toni Morrison", price: "120", old: "165", img: "" },
+    { title: "The Handmaid's Tale", author: "Margaret Atwood", price: "125", old: "170", img: "" },
+    { title: "One Hundred Years of Solitude", author: "Gabriel Garcia Marquez", price: "135", old: "185", img: "" },
+    { title: "The Brothers Karamazov", author: "Fyodor Dostoevsky", price: "170", old: "230", img: "" },
+    { title: "Don Quixote", author: "Miguel de Cervantes", price: "180", old: "250", img: "" },
+    { title: "Great Expectations", author: "Charles Dickens", price: "125", old: "170", img: "" },
+    { title: "The Old Man and the Sea", author: "Ernest Hemingway", price: "90", old: "125", img: "" },
 
-    <div class="hero">
-        <h1 style="font-size: 3.5rem; margin: 0; font-weight: 800;">The Eternal Library</h1>
-        <p style="letter-spacing: 5px; opacity: 0.8; text-transform: uppercase; font-size: 0.9rem;">Where History Meets the Modern Mind</p>
-    </div>
+    // 61-70: Modern Fiction & Fantasy
+    { title: "The Hobbit", author: "J.R.R. Tolkien", price: "130", old: "180", img: "" },
+    { title: "Lord of the Rings", author: "J.R.R. Tolkien", price: "250", old: "350", img: "" },
+    { title: "Dune", author: "Frank Herbert", price: "145", old: "200", img: "" },
+    { title: "American Gods", author: "Neil Gaiman", price: "135", old: "180", img: "" },
+    { title: "Never Let Me Go", author: "Kazuo Ishiguro", price: "120", old: "165", img: "" },
+    { title: "The Kite Runner", author: "Khaled Hosseini", price: "115", old: "155", img: "" },
+    { title: "Life of Pi", author: "Yann Martel", price: "110", old: "150", img: "" },
+    { title: "Life After Life", author: "Kate Atkinson", price: "125", old: "170", img: "" },
+    { title: "The Book Thief", author: "Markus Zusak", price: "130", old: "175", img: "" },
+    { title: "Norwegian Wood", author: "Haruki Murakami", price: "125", old: "170", img: "" },
 
-    <div class="main-container">
-        <div class="grid" id="grid"></div>
-    </div>
+    // 71-80: Drama & Plays (University Level)
+    { title: "Death of a Salesman", author: "Arthur Miller", price: "95", old: "130", img: "" },
+    { title: "The Crucible", author: "Arthur Miller", price: "95", old: "130", img: "" },
+    { title: "A Doll's House", author: "Henrik Ibsen", price: "90", old: "125", img: "" },
+    { title: "Macbeth", author: "William Shakespeare", price: "90", old: "125", img: "" },
+    { title: "Othello", author: "William Shakespeare", price: "90", old: "125", img: "" },
+    { title: "The Waste Land", author: "T.S. Eliot", price: "110", old: "150", img: "" },
+    { title: "Heart of Darkness", author: "Joseph Conrad", price: "100", old: "140", img: "" },
+    { title: "Moby Dick", author: "Herman Melville", price: "140", old: "190", img: "" },
+    { title: "The Canterbury Tales", author: "Geoffrey Chaucer", price: "150", old: "200", img: "" },
+    { title: "Paradise Lost", author: "John Milton", price: "160", old: "220", img: "" },
 
-    <section class="reviews">
-        <h2 style="letter-spacing: 4px;">VOICES OF THE SCHOLARS</h2>
-        <div class="rev-grid">
-            <div class="rev-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"A curated sanctuary for the modern intellectual. Pure aesthetic."</p>
-                <span style="color: var(--gold); font-size: 0.8rem;">— OXFORD LITERARY JOURNAL</span>
-            </div>
-            <div class="rev-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"The intersection of academic depth and digital beauty."</p>
-                <span style="color: var(--gold); font-size: 0.8rem;">— PHILOSOPHY TODAY</span>
-            </div>
-        </div>
-    </section>
+    // 81-90: Modern Favorites
+    { title: "Kafka on the Shore", author: "Haruki Murakami", price: "145", old: "200", img: "" },
+    { title: "The Song of Achilles", author: "Madeline Miller", price: "125", old: "170", img: "" },
+    { title: "Circe", author: "Madeline Miller", price: "125", old: "170", img: "" },
+    { title: "Educated", author: "Tara Westover", price: "135", old: "185", img: "" },
+    { title: "When Breath Becomes Air", author: "Paul Kalanithi", price: "120", old: "165", img: "" },
+    { title: "The Midnight Library", author: "Matt Haig", price: "120", old: "165", img: "" },
+    { title: "Shuggie Bain", author: "Douglas Stuart", price: "140", old: "190", img: "" },
+    { title: "Where the Crawdads Sing", author: "Delia Owens", price: "115", old: "160", img: "" },
+    { title: "Small Things Like These", author: "Claire Keegan", price: "110", old: "150", img: "" },
+    { title: "Normal People", author: "Sally Rooney", price: "125", old: "170", img: "" },
 
-    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
-
-    <footer>
-        <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.6;">PROJECT ARCHITECTS</p>
-        <div class="dev-names">AMINE DRGHOUI & CHARAFEDDINE EL AOUYNI</div>
-        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2026 Academic Project | English Studies Dept | FLSHM Mohammedia</p>
-    </footer>
-
-    <script>
-        // قائمة تضم 100 كتاب حقيقي بأرقام ISBN دقيقة لضمان جودة الصور
-        const collection = [
-            {t: "The Republic", a: "Plato", p: 135, isbn: "9781604593452"},
-            {t: "Meditations", a: "Marcus Aurelius", p: 140, isbn: "9780140449334"},
-            {t: "The Stranger", a: "Albert Camus", p: 125, isbn: "9780679720201"},
-            {t: "Crime and Punishment", a: "Fyodor Dostoevsky", p: 160, isbn: "9780140449136"},
-            {t: "Thus Spoke Zarathustra", a: "Friedrich Nietzsche", p: 155, isbn: "9780140441185"},
-            {t: "The Art of War", a: "Sun Tzu", p: 95, isbn: "9781599869774"},
-            {t: "Critique of Pure Reason", a: "Immanuel Kant", p: 180, isbn: "9780140440621"},
-            {t: "The Prince", a: "Niccolò Machiavelli", p: 110, isbn: "9780140449150"},
-            {t: "The Trial", a: "Franz Kafka", p: 130, isbn: "9780805210408"},
-            {t: "1984", a: "George Orwell", p: 120, isbn: "9780451524935"},
-            {t: "The Odyssey", a: "Homer", p: 115, isbn: "9780140268867"},
-            {t: "Divine Comedy", a: "Dante Alighieri", p: 170, isbn: "9780142437223"},
-            {t: "Hamlet", a: "William Shakespeare", p: 90, isbn: "9780743477123"},
-            {t: "The Alchemist", a: "Paulo Coelho", p: 105, isbn: "9780062315007"},
-            {
-                
+    // 91-100: Philosophy & Wisdom
+    { title: "The Prince", author: "Niccolo Machiavelli", price: "95", old: "130", img: "" },
+    { title: "The Art of War", author: "Sun Tzu", price: "85", old: "120", img: "" },
+    { title: "L'Etranger", author: "Albert Camus", price: "95", old: "130", img: "" },
+    { title: "Le Petit Prince", author: "Antoine de Saint-Exupéry", price: "85", old: "115", img: "" },
+    { title: "Letters to a Young Poet", author: "Rainer Maria Rilke", price: "105", old: "145", img: "" },
+    { title: "On the Road", author: "Jack Kerouac", price: "115", old: "155", img: "" },
+    { title: "The Sun Also Rises", author: "Ernest Hemingway", price: "110", old: "150", img: "" },
+    { title: "Orlando", author: "Virginia Woolf", price: "120", old: "165", img: "" },
+    { title: "Mrs. Dalloway", author: "Virginia Woolf", price: "120", old: "165", img: "" },
+    { title: "Beyond the Cogito", author: "Library Exclusive", price: "199", old: "250", img: "" }
+];
