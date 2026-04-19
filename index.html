@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beyond the Cogito | Premier Archive</title>
+    <title>Beyond the Cogito | Digital Archive</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --gold: #b5945b;
-            --dark: #0a0a0a;
-            --soft-white: #fcfaf5;
-            --accent: #d4af37;
-            --card-border: #e0e0e0;
+            --dark: #121212;
+            --ivory: #fdfcf9;
         }
 
         body {
-            font-family: 'Georgia', serif; /* Classic look */
-            background-color: var(--soft-white);
+            font-family: 'Georgia', serif;
+            background-color: var(--ivory);
             margin: 0;
             padding: 0;
-            scroll-behavior: smooth;
             color: #333;
         }
 
-        /* Pure English, Sticky Navigation */
-        nav.top-nav {
+        /* Navigation Area */
+        nav {
             background: var(--dark);
             padding: 15px 5%;
             display: flex;
@@ -33,295 +30,190 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            border-bottom: 2px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
         }
 
-        .logo { color: white; font-size: 1.6rem; letter-spacing: 2px; text-decoration: none; text-transform: uppercase; }
-        .logo span { color: var(--gold); font-weight: bold; }
+        .logo { color: white; font-size: 1.4rem; letter-spacing: 2px; text-decoration: none; text-transform: uppercase; font-weight: bold; }
+        .logo span { color: var(--gold); }
 
-        .search-container { position: relative; width: 320px; }
-        .search-container input {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: 1px solid #333;
+        .search-box {
+            background: #222;
+            border: 1px solid #444;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            width: 280px;
             outline: none;
-            background: #1a1a1a;
-            color: #ccc;
-            font-family: 'Arial', sans-serif;
             transition: 0.3s;
         }
-        .search-container input:focus { border-color: var(--gold); background: #222; }
-        .search-container i { position: absolute; right: 15px; top: 14px; color: #555; }
+        .search-box:focus { border-color: var(--gold); width: 320px; }
 
-        /* Hero Section with Parallax Effect */
+        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1600&auto=format&fit=crop');
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 400px;
+            height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
-            border-bottom: 5px solid var(--gold);
+            border-bottom: 4px solid var(--gold);
         }
 
-        .hero h2 { font-size: 3.5rem; margin: 0; font-weight: 300; letter-spacing: 1px; }
-        .hero p { font-style: italic; color: var(--gold); font-size: 1.3rem; margin-top: 15px; max-width: 600px; }
+        .hero h1 { font-size: 3rem; margin: 0; letter-spacing: 3px; }
+        .hero p { font-style: italic; color: var(--gold); font-size: 1.2rem; margin-top: 10px; }
 
-        /* Main Content & Responsive Grid */
-        .main-content { padding: 60px 8%; max-width: 1600px; margin: auto; }
-        
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-header h2 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--dark); position: relative; display: inline-block; padding-bottom: 15px; }
-        .section-header h2::after { content: ''; position: absolute; bottom: 0; left: 25%; width: 50%; height: 3px; background: var(--gold); }
-
+        /* Grid Layout */
+        .main-container { padding: 50px 5%; max-width: 1400px; margin: auto; }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 40px;
         }
 
-        /* Luxury Book Card with Hover Effects */
-        .card {
+        /* Dynamic Book Cover Styling */
+        .book-card {
             background: white;
-            border: 1px solid var(--card-border);
-            border-radius: 4px;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-            position: relative;
+            border: 1px solid #eee;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            cursor: pointer;
         }
 
-        .card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-            border-color: var(--gold);
-        }
+        .book-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); border-color: var(--gold); }
 
-        /* Book Image Container */
-        .img-holder {
-            width: 100%;
-            height: 330px;
-            background-color: #f0f0f0;
-            overflow: hidden;
+        .cover-area {
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
             position: relative;
+            box-sizing: border-box;
+            border-bottom: 6px solid rgba(0,0,0,0.3);
         }
 
-        .img-holder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures no distortion */
-            transition: transform 0.7s;
-        }
-
-        .card:hover img { transform: scale(1.1); }
-
-        /* Decorative Badge */
-        .badge {
+        .cover-area::before {
+            content: '';
             position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--gold);
-            color: var(--dark);
-            padding: 6px 12px;
-            font-size: 0.65rem;
+            left: 5px; top: 0; bottom: 0; width: 15px;
+            background: rgba(255,255,255,0.1); /* Spine effect */
+        }
+
+        .cover-title {
+            font-size: 1.1rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 20px;
-            z-index: 10;
+            line-height: 1.2;
+            margin-top: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
-        /* Book Details Section */
-        .details { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        
-        .details h3 {
-            font-size: 1.15rem;
-            margin: 0 0 10px 0;
-            color: var(--dark);
-            height: 2.6em; /* Fixed height for alignment */
-            overflow: hidden;
-            line-height: 1.3;
-        }
-
-        .author {
-            color: #777;
-            font-size: 0.95rem;
+        .cover-author {
+            font-size: 0.8rem;
             font-style: italic;
-            display: block;
-            margin-bottom: 15px;
+            opacity: 0.9;
+            margin-bottom: 20px;
         }
 
-        /* Purchase Line with Price & Button */
-        .purchase-info {
+        .book-icon { font-size: 2.5rem; opacity: 0.4; }
+
+        /* Book Info Below Cover */
+        .book-details { padding: 20px; text-align: left; }
+        .book-details h3 { font-size: 1rem; margin: 0 0 10px; color: var(--dark); height: 2.4em; overflow: hidden; }
+        
+        .price-tag {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: auto;
-            padding-top: 15px;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .price {
+            margin-top: 15px;
             font-weight: bold;
             color: var(--gold);
-            font-size: 1.3rem;
             font-family: Arial, sans-serif;
         }
-        
-        .btn-cart {
+
+        .btn-buy {
             background: var(--dark);
             color: white;
-            padding: 10px 18px;
-            border: 1px solid #333;
-            cursor: pointer;
-            font-size: 0.8rem;
+            border: none;
+            padding: 8px 12px;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            cursor: pointer;
             transition: 0.3s;
-            border-radius: 2px;
         }
+        .btn-buy:hover { background: var(--gold); color: black; }
 
-        .btn-cart:hover { background: var(--gold); color: black; border-color: var(--gold); }
-        .btn-cart i { margin-right: 5px; }
-
-        /* Elegant Footer */
-        footer {
-            background: var(--dark);
-            color: #888;
-            padding: 60px 8%;
-            text-align: center;
-            border-top: 1px solid #222;
-        }
-        
-        .footer-logo { font-size: 1.8rem; color: #bbb; margin-bottom: 25px; }
-        .footer-logo span { color: #555; }
-        
-        .social-icons { margin-bottom: 30px; font-size: 1.2rem; }
-        .social-icons a { color: #444; margin: 0 15px; transition: 0.3s; text-decoration: none; }
-        .social-icons a:hover { color: var(--gold); }
-        
-        footer p { margin: 8px 0; font-size: 0.9rem; }
+        footer { background: var(--dark); color: #777; padding: 60px 20px; text-align: center; margin-top: 50px; }
+        .footer-info { color: #bbb; margin-bottom: 15px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <nav class="top-nav">
+    <nav>
         <a href="#" class="logo">BEYOND THE <span>COGITO</span></a>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search by title or author..." onkeyup="searchBooks()">
-            <i class="fas fa-search"></i>
-        </div>
+        <input type="text" class="search-box" id="searchBar" placeholder="Search for a book or author..." onkeyup="filterBooks()">
     </nav>
 
     <div class="hero">
-        <h2>The Eternal Library</h2>
+        <h1>The Eternal Library</h1>
         <p>"I think, therefore I am." — René Descartes</p>
     </div>
 
-    <div class="main-content">
-        <div class="section-header">
-            <h2>The Philosophical Collection</h2>
-        </div>
-        <div class="grid" id="bookGrid">
-            </div>
+    <div class="main-container">
+        <div class="grid" id="libraryGrid"></div>
     </div>
 
     <footer>
-        <div class="footer-logo">BEYOND THE <span>COGITO</span></div>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-        </div>
-        <p>&copy; 2026 Academic Research Project | Digital Archive</p>
-        <p style="color: #444; font-size: 0.75rem;">FLSHM Mohammedia - Department of English Studies</p>
+        <div class="footer-info">Designed by Osama, Amine & Charafeddine</div>
+        <p>&copy; 2026 Academic Project | FLSHM Mohammedia - Department of English Studies</p>
     </footer>
 
     <script>
-        // --- 1. The List of REAL Philosophy Book Data (Pure English) ---
-        const philosophyBooks = [
-            {t: "The Republic", a: "Plato", tag: "Classic"}, 
-            {t: "Meditations", a: "Marcus Aurelius", tag: "Stoicism"},
-            {t: "Thus Spoke Zarathustra", a: "Friedrich Nietzsche", tag: "Existentialism"}, 
-            {t: "Critique of Pure Reason", a: "Immanuel Kant", tag: "Idealism"},
-            {t: "The Stranger", a: "Albert Camus", tag: "Absurdism"}, 
-            {t: "Being and Nothingness", a: "Jean-Paul Sartre", tag: "Existentialism"},
-            {t: "The Prince", a: "Machiavelli", tag: "Politics"}, 
-            {t: "Discourse on Method", a: "Descartes", tag: "Rationalism"},
-            {t: "The Art of War", a: "Sun Tzu", tag: "Strategy"}, 
-            {t: "Sophie's World", a: "Jostein Gaarder", tag: "History"},
-            {t: "Beyond Good and Evil", a: "Nietzsche", tag: "Philosophy"},
-            {t: "Phenomenology of Spirit", a: "Hegel", tag: "Idealism"},
-            {t: "The Social Contract", a: "Rousseau", tag: "Politics"},
-            {t: "The Second Sex", a: "De Beauvoir", tag: "Feminism"},
-            {t: "Man's Search for Meaning", a: "Frankl", tag: "Psychology"},
-            {t: "Being and Time", a: "Heidegger", tag: "Existentialism"},
-            {t: "Ethics", a: "Spinoza", tag: "Rationalism"},
-            {t: "The Communist Manifesto", a: "Karl Marx", tag: "Politics"},
-            {t: "A Theory of Justice", a: "John Rawls", tag: "Ethics"},
-            {t: "Leviathan", a: "Thomas Hobbes", tag: "Politics"}
-            // (The script below will repeat these patterns to reach 100 items for design consistency)
+        const libraryData = [
+            {t: "The Republic", a: "Plato", color: "#2c3e50"},
+            {t: "Meditations", a: "Marcus Aurelius", color: "#6d4c41"},
+            {t: "Thus Spoke Zarathustra", a: "Friedrich Nietzsche", color: "#b71c1c"},
+            {t: "Critique of Pure Reason", a: "Immanuel Kant", color: "#1b5e20"},
+            {t: "The Stranger", a: "Albert Camus", color: "#0d47a1"},
+            {t: "Being and Nothingness", a: "Jean-Paul Sartre", color: "#e65100"},
+            {t: "The Prince", a: "Niccolò Machiavelli", color: "#37474f"},
+            {t: "Ethics", a: "Baruch Spinoza", color: "#006064"},
+            {t: "The Art of War", a: "Sun Tzu", color: "#212121"},
+            {t: "Sophie's World", a: "Jostein Gaarder", color: "#4a148c"},
+            {t: "The Social Contract", a: "Jean-Jacques Rousseau", color: "#bf360c"},
+            {t: "Beyond Good and Evil", a: "Friedrich Nietzsche", color: "#880e4f"},
+            {t: "Leviathan", a: "Thomas Hobbes", color: "#311b92"},
+            {t: "Man's Search for Meaning", a: "Viktor Frankl", color: "#33691e"},
+            {t: "The Second Sex", a: "Simone de Beauvoir", color: "#1a237e"}
         ];
 
-        // --- 2. The REAL Stable Book Cover Image Links from the Web ---
-        // These are links to real book covers of philosophy books (stable sources).
-        const stableImgLinks = [
-            "https://i.ibb.co/6y4t6y3/republic.jpg", // Plato's Republic
-            "https://i.ibb.co/3y4t6y3/meditations.jpg", // Marcus Aurelius
-            "https://i.ibb.co/Vy4t6y3/zarathustra.jpg", // Nietzsche
-            "https://i.ibb.co/wy4t6y3/critique.jpg", // Kant
-            "https://i.ibb.co/Sy4t6y3/stranger.jpg", // Camus
-            "https://i.ibb.co/Gy4t6y3/beingandnothing.jpg", // Sartre
-            "https://i.ibb.co/1y4t6y3/prince.jpg", // Machiavelli
-            "https://i.ibb.co/5y4t6y3/discourse.jpg", // Descartes
-            "https://i.ibb.co/Ry4t6y3/artofwar.jpg", // Sun Tzu
-            "https://i.ibb.co/Xy4t6y3/sophie.jpg", // Jostein Gaarder
-            "https://i.ibb.co/Ny4t6y3/beyondgood.jpg", // Nietzsche
-            "https://i.ibb.co/7y4t6y3/phenomenology.jpg", // Hegel
-            "https://i.ibb.co/py4t6y3/socialcontract.jpg", // Rousseau
-            "https://i.ibb.co/ny4t6y3/secondsex.jpg", // De Beauvoir
-            "https://i.ibb.co/jy4t6y3/mansearch.jpg", // Frankl
-            "https://i.ibb.co/cy4t6y3/beingandtime.jpg", // Heidegger
-            "https://i.ibb.co/vy4t6y3/ethics.jpg", // Spinoza
-            "https://i.ibb.co/0y4t6y3/communist.jpg", // Karl Marx
-            "https://i.ibb.co/Ly4t6y3/theoryjustice.jpg", // John Rawls
-            "https://i.ibb.co/Uy4t6y3/leviathan.jpg" // Thomas Hobbes
-        ];
+        const container = document.getElementById('libraryGrid');
 
-        const grid = document.getElementById('bookGrid');
-
-        // --- 3. The Render Function for 100 Unique Cards ---
-        function renderLibrary() {
-            grid.innerHTML = "";
+        function generateLibrary() {
+            container.innerHTML = "";
             for (let i = 0; i < 100; i++) {
-                // Determine which book data and image to use (cycling through the list of 20)
-                const dataIndex = i % philosophyBooks.length;
-                const imgIndex = i % stableImgLinks.length;
-                const book = philosophyBooks[dataIndex];
-                const imgUrl = stableImgLinks[imgIndex];
-
-                // Append the card HTML to the grid
-                grid.innerHTML += `
-                    <div class="card" data-title="${book.t.toLowerCase()}">
-                        <div class="badge">${book.tag}</div>
-                        <div class="img-holder">
-                            <img src="${imgUrl}" alt="${book.t} Cover" loading="lazy">
+                const book = libraryData[i % libraryData.length];
+                container.innerHTML += `
+                    <div class="book-card" data-search="${book.t.toLowerCase()} ${book.a.toLowerCase()}">
+                        <div class="cover-area" style="background-color: ${book.color}">
+                            <div class="cover-title">${book.t}</div>
+                            <div class="book-icon"><i class="fas fa-feather-alt"></i></div>
+                            <div class="cover-author">${book.a}</div>
                         </div>
-                        <div class="details">
+                        <div class="book-details">
                             <h3>${book.t}</h3>
-                            <span class="author">By ${book.a}</span>
-                            <div class="purchase-info">
-                                <span class="price">${110 + (i * 1.5)} DH</span>
-                                <button class="btn-cart"><i class="fas fa-cart-plus"></i> ADD</button>
+                            <div class="price-tag">
+                                <span>${120 + i} DH</span>
+                                <button class="btn-buy">ADD TO CART</button>
                             </div>
                         </div>
                     </div>
@@ -329,18 +221,15 @@
             }
         }
 
-        // --- 4. Search Functionality ---
-        function searchBooks() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementsByClassName('card');
-            for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getAttribute('data-title');
-                cards[i].style.display = title.includes(input) ? "flex" : "none";
+        function filterBooks() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let items = document.getElementsByClassName('book-card');
+            for (let item of items) {
+                item.style.display = item.dataset.search.includes(input) ? "flex" : "none";
             }
         }
 
-        // --- 5. Start the Library ---
-        renderLibrary();
+        generateLibrary();
     </script>
 </body>
 </html>
