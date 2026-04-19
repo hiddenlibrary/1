@@ -13,7 +13,7 @@
         .logo span { color: var(--gold); }
         .search-box { background: #222; border: 1px solid #444; padding: 10px 20px; border-radius: 30px; color: white; width: 250px; outline: none; }
         .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80'); background-size: cover; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
-        .main-container { padding: 50px 5%; max-width: 1400px; margin: auto; }
+        .main-container { padding: 50px 5%; max-width: 1400px; margin: auto; min-height: 500px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; }
         .book-card { background: white; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; overflow: hidden; }
         .book-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
@@ -80,5 +80,48 @@
             {t: "Minima Moralia", a: "Adorno"}, {t: "The Culture Industry", a: "Adorno"}, {t: "Eros and Civilization", a: "Marcuse"},
             {t: "One-Dimensional Man", a: "Marcuse"}, {t: "The Ego and the Id", a: "Freud"}, {t: "Civilization and Its Discontents", a: "Freud"},
             {t: "Totem and Taboo", a: "Freud"}, {t: "Archetypes of the Collective", a: "Carl Jung"}, {t: "The Hero with a Thousand Faces", a: "Campbell"},
-            {t: "The Golden Bough", a: "Frazer"},
+            {t: "The Golden Bough", a: "Frazer"}, {t: "The Structure of Scientific Revolutions", a: "Kuhn"}, {t: "Silent Spring", a: "Rachel Carson"},
+            {t: "The Double Helix", a: "James Watson"}, {t: "A Brief History of Time", a: "Hawking"}, {t: "The Selfish Gene", a: "Dawkins"},
+            {t: "The Tipping Point", a: "Gladwell"}, {t: "Thinking, Fast and Slow", a: "Kahneman"}, {t: "Sapiens", a: "Harari"},
+            {t: "The Prophet", a: "Kahlil Gibran"}, {t: "The Alchemist", a: "Coelho"}, {t: "1984", a: "George Orwell"},
+            {t: "Animal Farm", a: "George Orwell"}, {t: "Brave New World", a: "Huxley"}, {t: "Fahrenheit 451", a: "Bradbury"},
+            {t: "The Doors of Perception", a: "Huxley"}, {t: "Siddhartha", a: "Hermann Hesse"}, {t: "Steppenwolf", a: "Hermann Hesse"},
+            {t: "The Glass Bead Game", a: "Hermann Hesse"}, {t: "Nausea", a: "Sartre"}, {t: "No Exit", a: "Sartre"}
+        ];
+
+        const colors = ["#2c3e50", "#7b1fa2", "#b71c1c", "#1b5e20", "#0d47a1", "#e65100", "#37474f", "#006064", "#212121", "#4a148c"];
+        
+        function generate() {
+            const container = document.getElementById('libraryGrid');
+            if(!container) return;
             
+            container.innerHTML = "";
+            library.forEach((book, i) => {
+                const color = colors[i % colors.length];
+                container.innerHTML += `
+                    <div class="book-card" data-search="${book.t.toLowerCase()} ${book.a.toLowerCase()}">
+                        <div class="cover-area" style="background-color: ${color}">
+                            <div class="cover-title">${book.t}</div>
+                            <i class="fas fa-feather-alt" style="opacity:0.2; font-size: 2rem;"></i>
+                            <div class="cover-author">${book.a}</div>
+                        </div>
+                        <div class="book-details">
+                            <h3>${book.t}</h3>
+                            <div class="price-tag"><span>${100 + i} DH</span><button class="btn-buy">ADD</button></div>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function filterBooks() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let items = document.getElementsByClassName('book-card');
+            for (let item of items) { 
+                item.style.display = item.dataset.search.includes(input) ? "block" : "none"; 
+            }
+        }
+
+        window.onload = generate;
+    </script>
+</body>
+</html>
