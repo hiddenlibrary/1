@@ -1,156 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden Library | Philosophical Manuscripts</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for a classic scholarly feel -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Hidden Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f2f7f2; /* اللون الأخضر الفاتح من الصورة */
+            --card-bg: #ffffff;
+            --accent-color: #2d5a27; /* اللون الأخضر الغامق للأزرار */
+            --text-main: #333;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--primary-bg);
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        header {
+            background: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .hero {
+            padding: 60px 50px;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffffff, var(--primary-bg));
+            border-radius: 0 0 50px 50px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            padding: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .book-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .book-image {
+            width: 100%;
+            height: 350px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ستايل كتابة الاسم والكاتب داخل الصورة لضمان عدم التشويه */
+        .book-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(45, 90, 39, 0.85);
+            color: white;
+            padding: 15px 0;
+        }
+
+        .book-title {
+            font-weight: 700;
+            margin: 15px 10px 5px;
+            font-size: 1.1rem;
+        }
+
+        .author-name {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: #ffffff;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+        }
+
+        .credits {
+            font-weight: 500;
+            color: var(--accent-color);
+            margin-top: 10px;
+        }
+
+    </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">HIDDEN<span>LIBRARY</span></div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Existentialism</a></li>
-            <li><a href="#">Nihilism</a></li>
-            <li><a href="#">The Classics</a></li>
-        </ul>
-        <div class="nav-actions">
-            <button class="icon-btn">🔍</button>
-            <button class="icon-btn">🛒</button>
-            <button class="member-btn">Member Access</button>
+<header>
+    <div class="logo">Hidden Library</div>
+    <nav>الرئيسية | الأقسام | عن المكتبة</nav>
+</header>
+
+<section class="hero">
+    <h1>استكشف أعظم الأفكار</h1>
+    <p>مجموعة مختارة من 100 كتاب فلسفي غيرت مجرى التاريخ</p>
+</section>
+
+<div class="container">
+    <div class="book-card">
+        <div class="book-image">
+            <img src="path_to_image_1.jpg" alt="الجمهورية" style="width:100%; height:100%; object-fit:cover;">
+            <div class="book-overlay">أفلاطون</div>
         </div>
-    </nav>
+        <div class="book-title">الجمهورية</div>
+        <div class="author-name">أفلاطون</div>
+    </div>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-content">
-            <span class="fade-in">Established in Silence</span>
-            <h1>Where Thought Transcends Time</h1>
-            <p>A curated collection of the most profound philosophical works. Explore the depths of the human condition through the minds of Kafka, Camus, and Nietzsche.</p>
-            <div class="hero-btns">
-                <button class="btn-gold">Explore Collection</button>
-                <button class="btn-outline">New Arrivals</button>
-            </div>
+    <div class="book-card">
+        <div class="book-image">
+            <img src="path_to_image_2.jpg" alt="هكذا تكلم زرادشت" style="width:100%; height:100%; object-fit:cover;">
+            <div class="book-overlay">فريدريك نيتشه</div>
         </div>
-    </header>
+        <div class="book-title">هكذا تكلم زرادشت</div>
+        <div class="author-name">فريدريك نيتشه</div>
+    </div>
 
-    <!-- Library Grid -->
-    <section class="library-container">
-        <h2 class="section-title">The Essential Manuscripts</h2>
-        
-        <div class="books-grid">
-            
-            <!-- Book 1: Nietzsche -->
-            <div class="book-card">
-                <div class="book-visual cover-nietzsche">
-                    <div class="spine"></div>
-                    <div class="cover-info">
-                        <p class="author-label">F. NIETZSCHE</p>
-                        <h3 class="title-label">THUS SPOKE ZARATHUSTRA</h3>
-                        <div class="crest">HL</div>
-                    </div>
-                </div>
-                <div class="book-data">
-                    <h3>Thus Spoke Zarathustra</h3>
-                    <p class="meta">1883 • Philosophy / Fiction</p>
-                    <p class="summary">A monumental work exploring the Übermensch, the death of God, and the eternal recurrence.</p>
-                    <div class="price">$22.50</div>
-                    <div class="card-btns">
-                        <button class="buy-now">Add to Cart</button>
-                        <button class="details">View Specs</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Book 2: Camus -->
-            <div class="book-card">
-                <div class="book-visual cover-camus">
-                    <div class="spine"></div>
-                    <div class="cover-info">
-                        <p class="author-label">ALBERT CAMUS</p>
-                        <h3 class="title-label">THE MYTH OF SISYPHUS</h3>
-                        <div class="crest">HL</div>
-                    </div>
-                </div>
-                <div class="book-data">
-                    <h3>The Myth of Sisyphus</h3>
-                    <p class="meta">1942 • Absurdism</p>
-                    <p class="summary">Camus introduces his philosophy of the absurd: the conflict between the search for meaning and the silent universe.</p>
-                    <div class="price">$18.00</div>
-                    <div class="card-btns">
-                        <button class="buy-now">Add to Cart</button>
-                        <button class="details">View Specs</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Book 3: Dostoevsky -->
-            <div class="book-card">
-                <div class="book-visual cover-dosto">
-                    <div class="spine"></div>
-                    <div class="cover-info">
-                        <p class="author-label">F. DOSTOEVSKY</p>
-                        <h3 class="title-label">NOTES FROM UNDERGROUND</h3>
-                        <div class="crest">HL</div>
-                    </div>
-                </div>
-                <div class="book-data">
-                    <h3>Notes from Underground</h3>
-                    <p class="meta">1864 • Existential Fiction</p>
-                    <p class="summary">The first existentialist novel, presenting the bitter, isolated, and complex "Underground Man".</p>
-                    <div class="price">$15.99</div>
-                    <div class="card-btns">
-                        <button class="buy-now">Add to Cart</button>
-                        <button class="details">View Specs</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Book 4: Kafka -->
-            <div class="book-card">
-                <div class="book-visual cover-kafka">
-                    <div class="spine"></div>
-                    <div class="cover-info">
-                        <p class="author-label">FRANZ KAFKA</p>
-                        <h3 class="title-label">THE METAMORPHOSIS</h3>
-                        <div class="crest">HL</div>
-                    </div>
-                </div>
-                <div class="book-data">
-                    <h3>The Metamorphosis</h3>
-                    <p class="meta">1915 • Modernist Fiction</p>
-                    <p class="summary">A nightmare narrative of alienation, guilt, and the absurdity of the human social structure.</p>
-                    <div class="price">$12.50</div>
-                    <div class="card-btns">
-                        <button class="buy-now">Add to Cart</button>
-                        <button class="details">View Specs</button>
-                    </div>
-                </div>
-            </div>
-
+    <div class="book-card">
+        <div class="book-image">
+            <img src="path_to_image_3.jpg" alt="نقد العقل الخالص" style="width:100%; height:100%; object-fit:cover;">
+            <div class="book-overlay">إيمانويل كانط</div>
         </div>
-    </section>
+        <div class="book-title">نقد العقل الخالص</div>
+        <div class="author-name">إيمانويل كانط</div>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="copyright">
-                &copy; 2024 HIDDEN LIBRARY MANUSCRIPTS
-            </div>
-            <div class="dev-team">
-                Curated & Developed by: <br>
-                <strong>CHARAFEDDINE EL AOUYNI</strong> & <strong>AMINE DRGHOUI</strong>
-            </div>
-            <div class="uni-affiliation">
-                English Department | Academic Project
-            </div>
-        </div>
-    </footer>
+    </div>
+
+<footer>
+    <p>&copy; 2026 جميع الحقوق محفوظة لـ Hidden Library</p>
+    <div class="credits">
+        تم التصميم بواسطة: <br>
+        <strong>CHARAFEDDINE EL AOUYNI</strong> & <strong>AMINE DRGHOUI</strong>
+    </div>
+</footer>
 
 </body>
 </html>
