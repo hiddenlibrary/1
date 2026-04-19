@@ -6,177 +6,36 @@
     <title>Hidden Library | Philosophy Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #c5a059;
-            --dark-bg: #0a0a0a;
-            --card-white: #ffffff;
-        }
-
-        body {
-            background-color: #f9f9f9;
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Header */
-        header {
-            background-color: var(--dark-bg);
-            padding: 25px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 4px solid var(--gold);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            line-height: 1.1;
-        }
-
-        .logo span {
-            color: var(--gold);
-            font-size: 1.3rem;
-            display: block;
-        }
-
-        .search-bar {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            padding: 10px 20px;
-            border-radius: 25px;
-            color: white;
-            width: 250px;
-            outline: none;
-        }
-
-        /* Grid Layout */
-        .library-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-            padding: 60px 5%;
-        }
-
-        /* Book Card Style */
-        .book-card {
-            background: var(--card-white);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .book-card:hover {
-            transform: translateY(-15px);
-        }
-
-        /* Internal Cover Style (Anti-Distortion) */
-        .internal-cover {
-            height: 380px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 45px 25px;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .internal-cover h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin: 0;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 10px;
-        }
-
-        .internal-cover .feather-icon {
-            font-size: 60px;
-            opacity: 0.25;
-        }
-
-        .internal-cover .author-on-cover {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-        }
-
-        /* Book Info Bottom */
-        .book-info {
-            padding: 25px;
-            position: relative;
-        }
-
-        .book-info h4 {
-            margin: 0 0 8px 0;
-            font-size: 1.05rem;
-            color: #111;
-            font-weight: 700;
-        }
-
-        .price {
-            color: var(--gold);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .add-cart-btn {
-            position: absolute;
-            right: 20px;
-            bottom: 22px;
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 10px 18px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            cursor: pointer;
-            letter-spacing: 1px;
-        }
-
-        /* Colors for Variety */
-        .bg-1 { background-color: #1a2a3a; } /* Deep Blue */
-        .bg-2 { background-color: #4a3728; } /* Dark Brown */
-        .bg-3 { background-color: #2d4628; } /* Forest Green */
-        .bg-4 { background-color: #5a1a1a; } /* Burgundy */
-
-        footer {
-            background-color: var(--dark-bg);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 5px solid var(--gold);
-        }
-
-        .footer-credits {
-            color: var(--gold);
-            font-weight: bold;
-            margin-top: 20px;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-        }
+        :root { --gold: #c5a059; --dark-bg: #0a0a0a; }
+        body { background-color: #f9f9f9; margin: 0; font-family: 'Montserrat', sans-serif; }
+        header { background-color: var(--dark-bg); padding: 25px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Playfair Display', serif; color: white; text-transform: uppercase; letter-spacing: 3px; line-height: 1.1; }
+        .logo span { color: var(--gold); font-size: 1.3rem; display: block; }
+        .search-bar { background: #1a1a1a; border: 1px solid #333; padding: 10px 20px; border-radius: 25px; color: white; width: 250px; outline: none; }
+        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; padding: 60px 5%; }
+        .book-card { background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.4s; border-radius: 4px; overflow: hidden; }
+        .book-card:hover { transform: translateY(-10px); }
+        .internal-cover { height: 380px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 45px 25px; text-align: center; color: white; }
+        .internal-cover h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin: 0; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .feather-icon { font-size: 50px; opacity: 0.2; }
+        .author-on-cover { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; }
+        .book-info { padding: 25px; position: relative; }
+        .book-info h4 { margin: 0 0 8px 0; font-size: 1rem; color: #111; height: 40px; overflow: hidden; }
+        .price { color: var(--gold); font-weight: bold; font-size: 1.1rem; }
+        .add-cart-btn { position: absolute; right: 20px; bottom: 22px; background: #000; color: #fff; border: none; padding: 8px 15px; font-size: 0.7rem; font-weight: bold; cursor: pointer; }
+        .bg-1 { background-color: #1a2a3a; } .bg-2 { background-color: #4a3728; } .bg-3 { background-color: #2d4628; } .bg-4 { background-color: #5a1a1a; }
+        footer { background-color: var(--dark-bg); color: white; text-align: center; padding: 60px 20px; border-top: 5px solid var(--gold); }
+        .footer-credits { color: var(--gold); font-weight: bold; margin-top: 20px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">
-        BEYOND THE<br><span>HIDDEN LIBRARY</span>
-    </div>
-    <input type="text" class="search-bar" placeholder="Search for a book or author...">
+    <div class="logo">BEYOND THE<br><span>HIDDEN LIBRARY</span></div>
+    <input type="text" id="searchInput" class="search-bar" placeholder="Search for a book or author...">
 </header>
 
-<div class="library-grid" id="library">
-    </div>
+<div class="library-grid" id="library"></div>
 
 <footer>
     <p>© 2026 HIDDEN LIBRARY - ALL RIGHTS RESERVED</p>
@@ -187,44 +46,51 @@
 </footer>
 
 <script>
-    const books = [
-        { title: "The Republic", author: "Plato", price: "135 DH" },
-        { title: "Meditations", author: "Marcus Aurelius", price: "120 DH" },
-        { title: "Beyond Good and Evil", author: "Friedrich Nietzsche", price: "150 DH" },
-        { title: "Nicomachean Ethics", author: "Aristotle", price: "140 DH" },
-        { title: "Critique of Pure Reason", author: "Immanuel Kant", price: "165 DH" },
-        { title: "Being and Nothingness", author: "Jean-Paul Sartre", price: "180 DH" },
-        { title: "The Social Contract", author: "Jean-Jacques Rousseau", price: "115 DH" },
-        { title: "Leviathan", author: "Thomas Hobbes", price: "130 DH" },
-        { title: "Ethics", author: "Baruch Spinoza", price: "145 DH" },
-        { title: "The Myth of Sisyphus", author: "Albert Camus", price: "110 DH" },
-        
-    const fullList = [];
-    for(let i=0; i<100; i++) {
-        fullList.push(books[i % books.length]); 
-    }
+    const bookData = [
+        { t: "The Republic", a: "Plato" }, { t: "Meditations", a: "Marcus Aurelius" }, { t: "Beyond Good and Evil", a: "Friedrich Nietzsche" },
+        { t: "Nicomachean Ethics", a: "Aristotle" }, { t: "Critique of Pure Reason", a: "Immanuel Kant" }, { t: "Being and Nothingness", a: "Jean-Paul Sartre" },
+        { t: "The Social Contract", a: "Jean-Jacques Rousseau" }, { t: "Leviathan", a: "Thomas Hobbes" }, { t: "Ethics", a: "Baruch Spinoza" },
+        { t: "The Myth of Sisyphus", a: "Albert Camus" }, { t: "The Prince", a: "Niccolò Machiavelli" }, { t: "Fear and Trembling", a: "Søren Kierkegaard" },
+        { t: "Tao Te Ching", a: "Lao Tzu" }, { t: "The Art of War", a: "Sun Tzu" }, { t: "Confessions", a: "Saint Augustine" },
+        { t: "Summa Theologica", a: "Thomas Aquinas" }, { t: "Phenomenology of Spirit", a: "G.W.F. Hegel" }, { t: "The World as Will", a: "Arthur Schopenhauer" },
+        { t: "Human Understanding", a: "David Hume" }, { t: "Two Treatises", a: "John Locke" }, { t: "On Liberty", a: "John Stuart Mill" },
+        { t: "Communist Manifesto", a: "Karl Marx" }, { t: "Das Kapital", a: "Karl Marx" }, { t: "Man's Search for Meaning", a: "Viktor Frankl" },
+        { t: "The Second Sex", a: "Simone de Beauvoir" }, { t: "History of Philosophy", a: "Bertrand Russell" }, { t: "Tractatus", a: "Ludwig Wittgenstein" },
+        { t: "Being and Time", a: "Martin Heidegger" }, { t: "The Stranger", a: "Albert Camus" }, { t: "Enchiridion", a: "Epictetus" },
+        { t: "Letters from a Stoic", a: "Seneca" }, { t: "Sickness Unto Death", a: "Søren Kierkegaard" }, { t: "Civilization Discontents", a: "Sigmund Freud" },
+        { t: "Interpretation of Dreams", a: "Sigmund Freud" }, { t: "Dialectic Enlightenment", a: "Theodor Adorno" }, { t: "Discipline and Punish", a: "Michel Foucault" },
+        { t: "Simulacra & Simulation", a: "Jean Baudrillard" }, { t: "Of Grammatology", a: "Jacques Derrida" }, { t: "The Human Condition", a: "Hannah Arendt" },
+        { t: "A Theory of Justice", a: "John Rawls" }, { t: "Incoherence Philosophers", a: "Al-Ghazali" }, { t: "The Muqaddimah", a: "Ibn Khaldun" },
+        { t: "The Decisive Treatise", a: "Ibn Rushd" }, { t: "Hayy ibn Yaqdhan", a: "Ibn Tufail" }, { t: "Proslogion", a: "Anselm" },
+        { t: "Utopia", a: "Thomas More" }, { t: "Novum Organum", a: "Francis Bacon" }, { t: "Candide", a: "Voltaire" },
+        { t: "Wealth of Nations", a: "Adam Smith" }, { t: "Common Sense", a: "Thomas Paine" }, { t: "Walden", a: "Henry David Thoreau" },
+        { t: "Self-Reliance", a: "Ralph Waldo Emerson" }, { t: "Pragmatism", a: "William James" }, { t: "Democracy & Education", a: "John Dewey" },
+        { t: "Language, Truth, Logic", a: "A.J. Ayer" }, { t: "Truth and Method", a: "Hans-Georg Gadamer" }, { t: "Minima Moralia", a: "Theodor Adorno" },
+        { t: "One-Dimensional Man", a: "Herbert Marcuse" }, { t: "The Rebel", a: "Albert Camus" }, { t: "Gender Trouble", a: "Judith Butler" },
+        { t: "Anti-Oedipus", a: "Gilles Deleuze" }, { t: "Specters of Marx", a: "Jacques Derrida" }, { t: "Orientalism", a: "Edward Said" },
+        { t: "Liquid Modernity", a: "Zygmunt Bauman" }, { t: "Postmodern Condition", a: "Jean-François Lyotard" }, { t: "Mirror of Nature", a: "Richard Rorty" },
+        { t: "The Social Contract", a: "Rousseau" }, { t: "Critique of Judgment", a: "Kant" }, { t: "The Open Society", a: "Karl Popper" },
+        { t: "Structure of Revolutions", a: "Thomas Kuhn" }, { t: "Anarchy State Utopia", a: "Robert Nozick" }, { t: "The Selfish Gene", a: "Richard Dawkins" },
+        { t: "Summa Contra Gentiles", a: "Thomas Aquinas" }, { t: "The New Science", a: "Giambattista Vico" }, { t: "Monadology", a: "Leibniz" },
+        { t: "The Book of Healing", a: "Avicenna" }, { t: "Guide for Perplexed", a: "Maimonides" }, { t: "The Will to Power", a: "Nietzsche" },
+        { t: "Knowledge & Human Interest", a: "Habermas" }, { t: "Eros and Civilization", a: "Marcuse" }, { t: "Nausea", a: "Sartre" },
+        { t: "The Mandarins", a: "Beauvoir" }, { t: "Pedagogy of Oppressed", a: "Paulo Freire" }, { t: "The Wretched Earth", a: "Frantz Fanon" },
+        { t: "Black Skin White Masks", a: "Frantz Fanon" }, { t: "Small is Beautiful", a: "Schumacher" }, { t: "The Silent Spring", a: "Rachel Carson" },
+        { t: "System of Objects", a: "Baudrillard" }, { t: "Writing and Difference", a: "Derrida" }, { t: "Difference Repetition", a: "Deleuze" },
+        { t: "Society of Spectacle", a: "Guy Debord" }, { t: "Idea of Justice", a: "Amartya Sen" }, { t: "The Closing of American Mind", a: "Bloom" },
+        { t: "Post-Capitalist Society", a: "Drucker" }, { t: "The Brave New World", a: "Huxley" }, { t: "Gorgias", a: "Plato" },
+        { t: "Phaedo", a: "Plato" }, { t: "Poetics", a: "Aristotle" }, { t: "Politics", a: "Aristotle" }, { t: "Physics", a: "Aristotle" }
+    ];
 
     const container = document.getElementById('library');
-    
-    fullList.forEach((book, index) => {
-        const colorClass = `bg-${(index % 4) + 1}`;
-        const card = `
-            <div class="book-card">
-                <div class="internal-cover ${colorClass}">
-                    <h3>${book.title}</h3>
-                    <div class="feather-icon">🪶</div>
-                    <div class="author-on-cover">${book.author}</div>
-                </div>
-                <div class="book-info">
-                    <h4>${book.title}</h4>
-                    <span class="price">${book.price}</span>
-                    <button class="add-cart-btn">ADD TO CART</button>
-                </div>
-            </div>
-        `;
-        container.innerHTML += card;
-    });
-</script>
+    const searchInput = document.getElementById('searchInput');
 
-</body>
-</html>
+    function displayBooks(list) {
+        container.innerHTML = "";
+        list.forEach((book, index) => {
+            const colorClass = `bg-${(index % 4) + 1}`;
+            container.innerHTML += `
+                <div class="book-card">
+                    <div class="internal-cover ${colorClass}">
+                        <h3>${book.t}</h3>
+    
